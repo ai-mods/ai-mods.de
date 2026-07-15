@@ -31,7 +31,7 @@ export type ListedProject = {
 export const featured: FeaturedProject[] = [
   {
     title: "Project Fusion",
-    url: "https://project-fusion.de/app-preview.html",
+    url: "https://project-fusion.de",
     status: {
       label: { de: "in entwicklung", en: "in development" },
       variant: "accent",
@@ -46,7 +46,7 @@ export const featured: FeaturedProject[] = [
       { value: "2", label: { de: "Plattformen", en: "platforms" } },
       { value: "9", label: { de: "AI-Provider", en: "AI providers" } },
       {
-        value: "12+",
+        value: "6+",
         label: { de: "integrierte Module", en: "integrated modules" },
       },
     ],
