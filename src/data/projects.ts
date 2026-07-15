@@ -1,4 +1,4 @@
-import fusionLanding from "../assets/project-fusion-landing.png";
+import fusionBanner from "../assets/project-fusion-banner.png";
 import opcomBanner from "../assets/opcom-banner.png";
 import wombachHomepage from "../assets/wombach-homepage.png";
 
@@ -51,10 +51,10 @@ export const featured: FeaturedProject[] = [
       },
     ],
     image: {
-      src: fusionLanding,
+      src: fusionBanner,
       alt: {
-        de: "Project Fusion Landing Page (Your Compass. Your Agents. One Team.) mit gestapelten Workspace-Screens",
-        en: "Project Fusion landing page (Your compass. Your agents. One team.) with stacked workspace screens",
+        de: "Project Fusion Banner: Your Compass. Your Agents. One Team. — Early Access coming soon",
+        en: "Project Fusion banner: Your Compass. Your Agents. One Team. — early access coming soon",
       },
     },
   },
