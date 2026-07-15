@@ -50,6 +50,10 @@ src/
   config.ts     availability flag, contact email, profile links
 ```
 
+## Deployment
+
+Every push to `main` runs [a GitHub Actions workflow](.github/workflows/deploy.yml) that type checks, lints, builds, and deploys the site to GitHub Pages, served at [ai-mods.de](https://ai-mods.de).
+
 ## License
 
 The source code is licensed under the [MIT License](LICENSE).
