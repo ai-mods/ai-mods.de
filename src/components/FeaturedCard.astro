@@ -194,6 +194,9 @@ const { project, lang } = Astro.props;
   .card.wide .media {
     grid-area: media;
     align-self: center;
+    /* The Fusion banner is 1200x630 (1.9:1); forcing 16:9 would crop the
+       texts at its edges, so the wide card keeps the natural ratio. */
+    aspect-ratio: auto;
   }
 
   .card.wide .stats {
