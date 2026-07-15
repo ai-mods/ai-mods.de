@@ -1,0 +1,146 @@
+---
+import { siteConfig } from "../config";
+import { useTranslations, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Anchor the section links to the home page so they also work from the legal
+// pages (where the sections don't exist). On the one-pager `/#projekte` still
+// resolves to a same-page hash jump, so the scroll behavior is unchanged.
+const home = lang === "de" ? "/" : "/en/";
+---
+
+<header class="header">
+  <div class="inner">
+    <a class="brand" href={home}>
+      <img class="logo" src="/ai-mods-logo.png" alt={t("header.logoAlt")} />
+      <span class="wordmark">ai-mods</span>
+    </a>
+
+    <nav class="nav">
+      <a href={`${home}#projekte`}>{t("nav.projects")}</a>
+      <a href={`${home}#skills`}>{t("nav.skills")}</a>
+      <a href={`${home}#services`}>{t("nav.services")}</a>
+      <a href={`${home}#ueber`}>{t("nav.about")}</a>
+    </nav>
+
+    <div class="right">
+      <div class="lang">
+        {
+          lang === "de" ? (
+            <span class="lang-active">{t("lang.de")}</span>
+          ) : (
+            <a href="/" class="lang-inactive">
+              {t("lang.de")}
+            </a>
+          )
+        }
+        <span class="lang-sep">/</span>
+        {
+          lang === "en" ? (
+            <span class="lang-active">{t("lang.en")}</span>
+          ) : (
+            <a href="/en/" class="lang-inactive">
+              {t("lang.en")}
+            </a>
+          )
+        }
+      </div>
+      <a class="contact" href={`mailto:${siteConfig.email}`}
+        >{t("header.contact")}</a
+      >
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-header);
+    backdrop-filter: blur(8px);
+  }
+
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .logo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .wordmark {
+    font-family: var(--font-mono);
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .nav {
+    display: flex;
+    gap: 28px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .lang {
+    display: flex;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+
+  .lang-active {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .lang-sep,
+  .lang-inactive {
+    color: var(--text-ghost);
+  }
+
+  .contact {
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--acc);
+    color: var(--acc-ink);
+    padding: 9px 18px;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      padding: 18px 20px;
+    }
+
+    .nav {
+      display: none;
+    }
+  }
+</style>

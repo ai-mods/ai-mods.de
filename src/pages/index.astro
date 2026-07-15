@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import OnePager from "../components/OnePager.astro";
+import { useTranslations, type Lang } from "../i18n/utils";
+
+const lang: Lang = "de";
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  lang={lang}
+  title={t("meta.title")}
+  description={t("meta.description")}
+>
+  <OnePager lang={lang} />
+</BaseLayout>

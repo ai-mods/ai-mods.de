@@ -1,0 +1,39 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  variant: "primary" | "secondary";
+  external?: boolean;
+}
+
+const { href, label, variant, external = false } = Astro.props;
+const rel = external ? "noopener" : undefined;
+const target = external ? "_blank" : undefined;
+---
+
+<a href={href} target={target} rel={rel} class:list={["btn", variant]}
+  >{label}</a
+>
+
+<style>
+  .btn {
+    padding: 13px 24px;
+    border-radius: var(--radius-btn);
+    font-weight: 600;
+  }
+
+  .primary {
+    font-size: 15px;
+    background: var(--acc);
+    color: var(--acc-ink);
+  }
+
+  .secondary {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 400;
+    padding: 13px 22px;
+    color: var(--text-soft);
+    border: 1px solid var(--border-btn);
+  }
+</style>

@@ -1,0 +1,49 @@
+---
+import type { Skill } from "../data/skills";
+import type { Lang } from "../i18n/utils";
+
+interface Props {
+  skill: Skill;
+  lang: Lang;
+}
+
+const { skill, lang } = Astro.props;
+---
+
+<div class="card">
+  <div class="title">{skill.title[lang]}</div>
+  <div class="lines">
+    {
+      skill.lines.map((line, index) => (
+        <Fragment>
+          {index > 0 && <br />}
+          {line[lang]}
+        </Fragment>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-card);
+  }
+
+  .title {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--acc);
+  }
+
+  .lines {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--text-soft);
+  }
+</style>

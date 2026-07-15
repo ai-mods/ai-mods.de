@@ -1,0 +1,53 @@
+---
+import { useTranslations, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const routes =
+  lang === "de"
+    ? { imprint: "/impressum", privacy: "/datenschutz" }
+    : { imprint: "/en/imprint", privacy: "/en/privacy" };
+---
+
+<footer class="footer">
+  <div class="inner">
+    <span>{t("footer.copyright")}</span>
+    <div class="links">
+      <a href={routes.imprint}>{t("footer.imprint")}</a>
+      <a href={routes.privacy}>{t("footer.privacy")}</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 20px 40px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-ghost);
+  }
+
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+
+  .links {
+    display: flex;
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .footer {
+      padding: 20px 20px;
+    }
+  }
+</style>

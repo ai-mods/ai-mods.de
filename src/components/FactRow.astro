@@ -1,0 +1,45 @@
+---
+interface Props {
+  label: string;
+  value: string;
+  accent?: boolean;
+  noBorder?: boolean;
+}
+
+const { label, value, accent = false, noBorder = false } = Astro.props;
+---
+
+<div class:list={["fact", { noBorder }]}>
+  <span class="label">{label}</span>
+  <span class:list={["value", { accent }]}>{value}</span>
+</div>
+
+<style>
+  .fact {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 14px;
+  }
+
+  .noBorder {
+    border-bottom: none;
+  }
+
+  .label {
+    flex-shrink: 0;
+    color: var(--text-faint);
+  }
+
+  .value {
+    color: var(--text-soft);
+    text-align: right;
+  }
+
+  .value.accent {
+    color: var(--acc);
+  }
+</style>

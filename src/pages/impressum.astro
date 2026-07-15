@@ -1,0 +1,30 @@
+---
+import LegalPage from "../components/LegalPage.astro";
+import { siteConfig } from "../config";
+---
+
+<LegalPage
+  lang="de"
+  title="Impressum — ai-mods"
+  description="Impressum und Anbieterkennzeichnung von ai-mods: Christian Perkuhn, Würzburg."
+  alternatePath="/en/imprint/"
+>
+  <h1>Impressum</h1>
+
+  <h2>Angaben gemäß § 5 DDG</h2>
+  <address>
+    Christian Perkuhn<br />
+    ai-mods<br />
+    Matterstockstraße 5<br />
+    97080 Würzburg<br />
+    Deutschland
+  </address>
+
+  <h2>Kontakt</h2>
+  <p>
+    E-Mail: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+  </p>
+
+  <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+  <p>Christian Perkuhn (Anschrift wie oben)</p>
+</LegalPage>

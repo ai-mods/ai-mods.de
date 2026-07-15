@@ -1,0 +1,35 @@
+---
+import LegalPage from "../../components/LegalPage.astro";
+import { siteConfig } from "../../config";
+---
+
+<LegalPage
+  lang="en"
+  title="Imprint — ai-mods"
+  description="Legal notice for ai-mods: Christian Perkuhn, Würzburg, Germany."
+  alternatePath="/impressum/"
+>
+  <h1>Imprint</h1>
+
+  <p class="note">
+    Courtesy translation of the German <a href="/impressum/">Impressum</a>,
+    which is the legally binding version.
+  </p>
+
+  <h2>Information pursuant to § 5 DDG</h2>
+  <address>
+    Christian Perkuhn<br />
+    ai-mods<br />
+    Matterstockstraße 5<br />
+    97080 Würzburg<br />
+    Germany
+  </address>
+
+  <h2>Contact</h2>
+  <p>
+    Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+  </p>
+
+  <h2>Responsible for content under § 18 (2) MStV</h2>
+  <p>Christian Perkuhn (address as above)</p>
+</LegalPage>

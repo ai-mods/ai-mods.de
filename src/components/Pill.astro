@@ -1,0 +1,31 @@
+---
+interface Props {
+  label: string;
+  variant: "accent" | "neutral";
+}
+
+const { label, variant } = Astro.props;
+---
+
+<span class:list={["pill", variant]}>{label}</span>
+
+<style>
+  .pill {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid;
+    white-space: nowrap;
+  }
+
+  .accent {
+    color: var(--acc);
+    border-color: var(--acc-dim);
+  }
+
+  .neutral {
+    color: var(--text-faint);
+    border-color: var(--border-btn);
+  }
+</style>

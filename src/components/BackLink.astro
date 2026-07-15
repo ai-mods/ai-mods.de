@@ -1,0 +1,29 @@
+---
+import { useTranslations, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const home = lang === "de" ? "/" : "/en/";
+---
+
+<a class="back" href={home}>&larr; {t("legal.back")}</a>
+
+<style>
+  .back {
+    display: inline-block;
+    margin-bottom: 40px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .back:hover {
+    color: var(--text);
+    opacity: 1;
+  }
+</style>

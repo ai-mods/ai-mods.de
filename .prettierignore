@@ -1,0 +1,5 @@
+# Not part of the website source — do not reformat
+docs/
+.claude/
+.vscode/
+CLAUDE.md

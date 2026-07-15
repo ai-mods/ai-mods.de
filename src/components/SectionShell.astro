@@ -1,0 +1,35 @@
+---
+import Kicker from "./Kicker.astro";
+
+interface Props {
+  id?: string;
+  kicker: string;
+  noBorder?: boolean;
+}
+
+const { id, kicker, noBorder = false } = Astro.props;
+---
+
+<section id={id} class:list={["shell", { noBorder }]}>
+  <Kicker text={kicker} />
+  <slot />
+</section>
+
+<style>
+  .shell {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 80px 40px 90px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .noBorder {
+    border-bottom: none;
+  }
+
+  @media (max-width: 768px) {
+    .shell {
+      padding: 64px 20px;
+    }
+  }
+</style>

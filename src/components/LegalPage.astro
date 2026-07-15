@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "./SiteHeader.astro";
+import SiteFooter from "./SiteFooter.astro";
+import BackLink from "./BackLink.astro";
+import ToTopButton from "./ToTopButton.astro";
+import type { Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Counterpart page in the other language, for canonical/hreflang. */
+  alternatePath: string;
+}
+
+const { lang, title, description, alternatePath } = Astro.props;
+---
+
+<BaseLayout
+  lang={lang}
+  title={title}
+  description={description}
+  alternatePath={alternatePath}
+>
+  <SiteHeader lang={lang} />
+  <main class="legal">
+    <BackLink lang={lang} />
+    <slot />
+    <ToTopButton lang={lang} />
+  </main>
+  <SiteFooter lang={lang} />
+</BaseLayout>
+
+<style>
+  .legal {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 40px 90px;
+  }
+
+  .legal :global(h1) {
+    margin: 0 0 40px;
+    font-family: var(--font-mono);
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .legal :global(h2) {
+    margin: 48px 0 16px;
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .legal :global(p) {
+    margin: 0 0 16px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  .legal :global(address) {
+    margin: 0 0 16px;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  .legal :global(a) {
+    color: var(--acc);
+  }
+
+  .legal :global(.note) {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-ghost);
+  }
+
+  @media (max-width: 768px) {
+    .legal {
+      padding: 32px 20px 64px;
+    }
+
+    .legal :global(h1) {
+      font-size: 32px;
+    }
+  }
+</style>

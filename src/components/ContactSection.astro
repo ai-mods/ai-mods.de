@@ -1,0 +1,92 @@
+---
+import { siteConfig } from "../config";
+import { useTranslations, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="kontakt" class="contact">
+  <div class="prompt">{t("contact.prompt")}</div>
+  <h2 class="heading">{t("contact.heading")}</h2>
+  <p class="text">{t("contact.text")}</p>
+
+  <a class="mail" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+
+  <div class="links">
+    <a href={siteConfig.links.github} target="_blank" rel="noopener">
+      {t("contact.github")}
+    </a>
+    <a href={siteConfig.links.linkedin} target="_blank" rel="noopener">
+      {t("contact.linkedin")}
+    </a>
+    <a href={siteConfig.links.steam} target="_blank" rel="noopener">
+      {t("contact.steam")}
+    </a>
+  </div>
+</section>
+
+<style>
+  .contact {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 100px 40px 110px;
+    text-align: center;
+  }
+
+  .prompt {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--acc);
+    margin-bottom: 24px;
+  }
+
+  .heading {
+    margin: 0 0 20px;
+    font-family: var(--font-mono);
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .text {
+    margin: 0 0 36px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  .mail {
+    display: inline-block;
+    margin-bottom: 40px;
+    padding: 16px 32px;
+    font-size: 17px;
+    font-weight: 600;
+    background: var(--acc);
+    color: var(--acc-ink);
+    border-radius: 12px;
+  }
+
+  .links {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 768px) {
+    .contact {
+      padding: 80px 20px 90px;
+    }
+
+    .heading {
+      font-size: 36px;
+    }
+  }
+</style>

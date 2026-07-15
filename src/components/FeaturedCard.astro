@@ -1,0 +1,219 @@
+---
+import { Image } from "astro:assets";
+import Pill from "./Pill.astro";
+import StatPair from "./StatPair.astro";
+import type { FeaturedProject } from "../data/projects";
+import type { Lang } from "../i18n/utils";
+
+interface Props {
+  project: FeaturedProject;
+  lang: Lang;
+}
+
+const { project, lang } = Astro.props;
+---
+
+<a
+  href={project.url}
+  target="_blank"
+  rel="noopener"
+  class:list={["card", { wide: project.wide }]}
+>
+  <div class="head">
+    <span class="title">{project.title}</span>
+    <Pill label={project.status.label[lang]} variant={project.status.variant} />
+  </div>
+
+  <p class="description">{project.description[lang]}</p>
+
+  {
+    project.image &&
+      ("src" in project.image ? (
+        <div class="media">
+          <Image
+            src={project.image.src}
+            alt={project.image.alt[lang]}
+            widths={[500, 1000]}
+            sizes="(max-width: 768px) 100vw, 484px"
+          />
+        </div>
+      ) : (
+        <div class="placeholder">
+          <span class="caption">{project.image.placeholder[lang]}</span>
+        </div>
+      ))
+  }
+
+  {
+    project.highlights && (
+      <ul class="highlights">
+        {project.highlights.map((highlight) => (
+          <li>{highlight[lang]}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  {
+    project.stats && (
+      <div class="stats">
+        {project.stats.map((stat) => (
+          <StatPair value={stat.value} label={stat.label[lang]} />
+        ))}
+      </div>
+    )
+  }
+
+  <span class="tags">{project.tags}</span>
+</a>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-card);
+    transition: border-color 150ms ease;
+  }
+
+  .card:hover {
+    border-color: var(--acc);
+    opacity: 1;
+  }
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .title {
+    font-family: var(--font-mono);
+    font-size: 26px;
+    font-weight: 600;
+  }
+
+  .description {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  .media {
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    border: 1px solid var(--border-card);
+    overflow: hidden;
+  }
+
+  .media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .placeholder {
+    flex: 1;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 1px solid var(--border-card);
+    background: repeating-linear-gradient(
+      45deg,
+      var(--placeholder-a) 0 14px,
+      var(--placeholder-b) 14px 28px
+    );
+  }
+
+  .caption {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--placeholder-caption);
+  }
+
+  .highlights {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 2;
+    color: var(--text-muted);
+  }
+
+  .highlights li::before {
+    content: "› ";
+    color: var(--text-ghost);
+  }
+
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 40px;
+  }
+
+  .tags {
+    margin-top: auto;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+
+  .card.wide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto 1fr auto;
+    grid-template-areas:
+      "head media"
+      "desc media"
+      "hl media"
+      "stats media"
+      "tags media";
+    column-gap: 40px;
+  }
+
+  .card.wide .highlights {
+    grid-area: hl;
+  }
+
+  .card.wide .head {
+    grid-area: head;
+  }
+
+  .card.wide .description {
+    grid-area: desc;
+  }
+
+  .card.wide .media {
+    grid-area: media;
+    align-self: center;
+  }
+
+  .card.wide .stats {
+    grid-area: stats;
+    align-self: end;
+  }
+
+  .card.wide .tags {
+    grid-area: tags;
+    align-self: end;
+  }
+
+  @media (max-width: 768px) {
+    .card.wide {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stats {
+      gap: 20px 28px;
+    }
+  }
+</style>

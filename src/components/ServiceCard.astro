@@ -1,0 +1,40 @@
+---
+import type { Service } from "../data/services";
+import type { Lang } from "../i18n/utils";
+
+interface Props {
+  service: Service;
+  lang: Lang;
+}
+
+const { service, lang } = Astro.props;
+---
+
+<div class="card">
+  <div class="title">{service.title[lang]}</div>
+  <p class="text">{service.text[lang]}</p>
+</div>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 28px;
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-card);
+  }
+
+  .title {
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .text {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+</style>

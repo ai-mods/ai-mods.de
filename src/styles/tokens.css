@@ -1,0 +1,46 @@
+:root {
+  /* Farben — Hintergründe & Flächen */
+  --bg: #0e1013;
+  --surface: #14171c;
+
+  /* Farben — Rahmen */
+  --border: #1d2128;
+  --border-card: #232833;
+  --border-btn: #2a2f38;
+
+  /* Farben — Text */
+  --text: #e8eaec;
+  --text-soft: #c2c7d0;
+  --text-muted: #9aa1ad;
+  --text-dim: #8b919c;
+  --text-faint: #6d7482;
+  --text-ghost: #4a5060;
+
+  /* Farben — Akzent (Blau) */
+  --acc: oklch(0.8 0.16 235);
+  --acc-dim: oklch(0.8 0.16 235 / 0.14);
+  --acc-ink: #070e13;
+
+  /* Farben — Porträt-Hintergrund (abgeschwächtes Weiß) */
+  --bg-portrait: oklch(92.8% 0.006 264.531);
+
+  /* Farben — Header (sticky, blur) */
+  --bg-header: rgba(14, 16, 19, 0.92);
+
+  /* Farben — Bild-Platzhalter (repeating-linear-gradient + Caption) */
+  --placeholder-a: #191d24;
+  --placeholder-b: #161a20;
+  --placeholder-caption: #5b6270;
+
+  /* Radien */
+  --radius-card: 14px;
+  --radius-btn: 10px;
+  --radius-pill: 99px;
+
+  /* Layout */
+  --maxw: 1200px;
+
+  /* Schrift */
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-sans: "Space Grotesk", sans-serif;
+}

@@ -1,0 +1,84 @@
+---
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import "@fontsource/ibm-plex-mono/600.css";
+import "@fontsource/ibm-plex-mono/700.css";
+import "@fontsource/space-grotesk/400.css";
+import "@fontsource/space-grotesk/500.css";
+import "@fontsource/space-grotesk/600.css";
+import "@fontsource/space-grotesk/700.css";
+import "../styles/tokens.css";
+import "../styles/global.css";
+
+interface Props {
+  lang: "de" | "en";
+  title: string;
+  description: string;
+  /**
+   * Pathname of this page's counterpart in the other language.
+   * Defaults to the one-pager mapping (`/` ↔ `/en/`); legal pages pass their
+   * own mapping (e.g. `/impressum` ↔ `/en/imprint`) because the paths differ.
+   */
+  alternatePath?: string;
+}
+
+const { lang, title, description, alternatePath } = Astro.props;
+
+if (!Astro.site) {
+  throw new Error(
+    "Astro.site must be configured for canonical and Open Graph URLs.",
+  );
+}
+const site = Astro.site;
+
+/** Directory build format serves every page under a trailing slash. */
+const withSlash = (path: string): string =>
+  path.endsWith("/") ? path : `${path}/`;
+
+const currentPath = withSlash(Astro.url.pathname);
+const otherPath = withSlash(alternatePath ?? (lang === "de" ? "/en/" : "/"));
+
+const canonical = new URL(currentPath, site).href;
+const dePath = lang === "de" ? currentPath : otherPath;
+const enPath = lang === "en" ? currentPath : otherPath;
+const deUrl = new URL(dePath, site).href;
+const enUrl = new URL(enPath, site).href;
+
+const ogImage = new URL(
+  lang === "de" ? "/og-image.png" : "/og-image-en.png",
+  site,
+).href;
+const ogLocale = lang === "de" ? "de_DE" : "en_US";
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="de" href={deUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={deUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={ogLocale} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

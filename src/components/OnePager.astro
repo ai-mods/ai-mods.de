@@ -1,0 +1,145 @@
+---
+import SiteHeader from "./SiteHeader.astro";
+import Hero from "./Hero.astro";
+import SectionShell from "./SectionShell.astro";
+import FeaturedCard from "./FeaturedCard.astro";
+import ListingRow from "./ListingRow.astro";
+import SkillCard from "./SkillCard.astro";
+import ServiceCard from "./ServiceCard.astro";
+import AboutSection from "./AboutSection.astro";
+import ContactSection from "./ContactSection.astro";
+import ToTopButton from "./ToTopButton.astro";
+import SiteFooter from "./SiteFooter.astro";
+import { featured, listed } from "../data/projects";
+import { skills } from "../data/skills";
+import { services } from "../data/services";
+import { useTranslations, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<SiteHeader lang={lang} />
+
+<main>
+  <Hero lang={lang} />
+
+  <SectionShell id="projekte" kicker={t("projects.kicker")}>
+    <div class="featured-grid">
+      {
+        featured.map((project) => (
+          <FeaturedCard project={project} lang={lang} />
+        ))
+      }
+    </div>
+    <div class="listings">
+      {listed.map((project) => <ListingRow project={project} lang={lang} />)}
+    </div>
+  </SectionShell>
+
+  <SectionShell id="skills" kicker={t("skills.kicker")}>
+    <h2 class="heading">{t("skills.heading")}</h2>
+    <p class="subheading">{t("skills.subheading")}</p>
+    <p class="intro">{t("skills.intro")}</p>
+    <div class="card-grid skills-grid">
+      {skills.map((skill) => <SkillCard skill={skill} lang={lang} />)}
+    </div>
+  </SectionShell>
+
+  <SectionShell id="services" kicker={t("services.kicker")}>
+    <div class="card-grid">
+      {services.map((service) => <ServiceCard service={service} lang={lang} />)}
+    </div>
+  </SectionShell>
+
+  <AboutSection lang={lang} />
+  <ContactSection lang={lang} />
+  <ToTopButton lang={lang} />
+</main>
+
+<SiteFooter lang={lang} />
+
+<style>
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .featured-grid > :global(.wide) {
+    grid-column: 1 / -1;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .heading {
+    margin: 0 0 10px;
+    font-family: var(--font-mono);
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .subheading {
+    margin: 0 0 28px;
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-dim);
+  }
+
+  .intro {
+    margin: 0 0 48px;
+    max-width: 900px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 1080px) {
+    .skills-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .featured-grid,
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .heading {
+      font-size: 32px;
+    }
+
+    .subheading {
+      font-size: 17px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+</style>

@@ -1,0 +1,99 @@
+---
+import type { ListedProject } from "../data/projects";
+import type { Lang } from "../i18n/utils";
+
+interface Props {
+  project: ListedProject;
+  lang: Lang;
+}
+
+const { project, lang } = Astro.props;
+---
+
+<a href={project.url} target="_blank" rel="noopener" class="row">
+  <span class="number">{project.number}</span>
+  <div class="body">
+    <div class="title">{project.title}</div>
+    <div class="description">{project.description[lang]}</div>
+  </div>
+  <span class="meta">{project.meta}</span>
+  <span class="status">{project.status}</span>
+</a>
+
+<style>
+  .row {
+    display: grid;
+    grid-template-columns: 64px 1fr 260px 150px;
+    gap: 0 24px;
+    align-items: baseline;
+    padding: 20px 8px;
+    border-top: 1px solid var(--border);
+    transition: border-color 150ms ease;
+  }
+
+  .row:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .row:hover {
+    border-color: var(--acc);
+    opacity: 1;
+  }
+
+  .number {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--text-ghost);
+  }
+
+  .title {
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .description {
+    max-width: 560px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .meta,
+  .status {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-faint);
+  }
+
+  .status {
+    text-align: right;
+  }
+
+  @media (max-width: 768px) {
+    .row {
+      grid-template-columns: auto auto 1fr;
+      grid-template-areas:
+        "body body body"
+        "number meta status";
+      gap: 10px 14px;
+    }
+
+    .number {
+      grid-area: number;
+    }
+
+    .body {
+      grid-area: body;
+    }
+
+    .meta {
+      grid-area: meta;
+    }
+
+    .status {
+      grid-area: status;
+    }
+  }
+</style>
