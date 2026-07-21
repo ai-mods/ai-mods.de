@@ -73,7 +73,12 @@ const t = useTranslations(lang);
   .hero {
     max-width: var(--maxw);
     margin: 0 auto;
-    padding: 110px 40px 90px;
+    min-height: calc(min(100vh, 720px) - var(--header-h));
+    min-height: calc(min(100svh, 720px) - var(--header-h));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px var(--pad-x);
     border-bottom: 1px solid var(--border);
   }
 
@@ -155,29 +160,20 @@ const t = useTranslations(lang);
     align-items: center;
   }
 
-  @media (max-width: 1200px) {
+  /* Gewollte Einrückung gegenüber den Sektionen — nur im Tablet-Band */
+  @media (min-width: 769px) and (max-width: 1200px) {
     .hero {
-      padding: 64px 64px 64px;
+      --pad-x: 64px;
     }
   }
 
   @media (max-width: 768px) {
-    .hero {
-      padding: 48px 32px;
-    }
-
     .headline {
       font-size: 42px;
     }
 
     .buttons {
       flex-wrap: wrap;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .hero {
-      padding-inline: 20px;
     }
   }
 </style>

@@ -39,8 +39,22 @@
 
   /* Layout */
   --maxw: 1200px;
+  --pad-x: 40px;
+  --header-h: 73px; /* 18px Padding ×2 + 36px Logo + 1px Border */
 
   /* Schrift */
   --font-mono: "IBM Plex Mono", monospace;
   --font-sans: "Space Grotesk", sans-serif;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --pad-x: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --pad-x: 20px;
+  }
 }
