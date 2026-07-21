@@ -19,8 +19,9 @@ const { id, kicker, noBorder = false } = Astro.props;
   .shell {
     max-width: var(--maxw);
     margin: 0 auto;
-    padding: 64px var(--pad-x) 90px;
+    padding: 48px var(--pad-x) 72px;
     border-bottom: 1px solid var(--border);
+    scroll-margin-top: var(--header-h);
   }
 
   .noBorder {
@@ -29,7 +30,7 @@ const { id, kicker, noBorder = false } = Astro.props;
 
   @media (max-width: 768px) {
     .shell {
-      padding-bottom: 64px;
+      padding-bottom: 48px;
     }
   }
 </style>
