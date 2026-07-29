@@ -25,11 +25,14 @@ const { skill, lang } = Astro.props;
 </div>
 
 <style>
+  /* Centred so the listing cards read differently from the prose cards
+     in the way-of-working section. */
   .card {
     display: flex;
     flex-direction: column;
     gap: 14px;
     padding: 28px;
+    text-align: center;
     background: var(--surface);
     border: 1px solid var(--border-card);
     border-radius: var(--radius-card);

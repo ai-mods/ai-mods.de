@@ -1,6 +1,5 @@
 import fusionBanner from "../assets/project-fusion-banner.png";
 import opcomBanner from "../assets/opcom-banner.png";
-import wombachHomepage from "../assets/wombach-homepage.png";
 
 export type LocalizedText = { de: string; en: string };
 
@@ -16,14 +15,14 @@ export type FeaturedProject = {
   image?: FeaturedImage;
   stats?: { value: string; label: LocalizedText }[];
   highlights?: LocalizedText[];
-  wide?: boolean;
 };
 
 export type ListedProject = {
   number: string;
   title: string;
   url: string;
-  description: LocalizedText;
+  problem: LocalizedText;
+  solution: LocalizedText;
   meta: string;
   status: string;
 };
@@ -37,11 +36,10 @@ export const featured: FeaturedProject[] = [
       variant: "accent",
     },
     description: {
-      de: "AI-Agent-Harness & Workspace: eine Full-Stack-Umgebung, in der Agents Aufgaben planen und ausführen. Routinen und zeitgesteuerte Impulse verketten Chat, Mail, Planner und Tracker zu Workflows. Agent-Code läuft dabei sicher in der Sandbox, getrennt vom Trust-Core. Lokale Models und Multi-User-Setups werden unterstützt.",
-      en: "AI agent harness & workspace: a full-stack environment where agents plan and execute tasks. Routines and scheduled impulses chain chat, mail, planner and tracker into workflows. Agent code runs safely in a sandbox, separated from the trusted core. Local models and multi-user setups are supported.",
+      de: "AI-Agent-Workspace: Meine Spielwiese und Labor in Form einer Full-Stack-Umgebung. Gestartet, um die Möglichkeiten von Claude Code zu entdecken. Herausgekommen ist eine Productivity-App mit eigenem Harness, Sandboxing und Trust-Core. So habe ich das Arbeiten mit KI vertieft und verstehe am selbst gebauten Harness, worauf es bei Tooling und Sicherheit ankommt.",
+      en: "AI agent workspace: my playground and lab in the shape of a full-stack environment. Started out to explore what Claude Code can do. What came out of it is a productivity app with its own harness, sandboxing and trust core. That deepened how I work with AI, and the harness I built shows me what matters in tooling and security.",
     },
     tags: "typescript · react · python · postgresql · docker · claude",
-    wide: true,
     stats: [
       { value: "2", label: { de: "Plattformen", en: "platforms" } },
       { value: "9", label: { de: "AI-Provider", en: "AI providers" } },
@@ -59,15 +57,15 @@ export const featured: FeaturedProject[] = [
     },
   },
   {
-    title: "OPCOM",
+    title: "Operations Command",
     url: "https://steamcommunity.com/sharedfiles/filedetails/?id=2651774379",
     status: {
       label: { de: "released", en: "released" },
       variant: "neutral",
     },
     description: {
-      de: "Modifikation für Arma 3. Intuitives UI zum Personalisieren von Szenarien, Missionen und Gameplay im Steam Workshop.",
-      en: "Modification for Arma 3. Intuitive UI for customizing scenarios, missions, and gameplay in the Steam Workshop.",
+      de: "Modifikation für Arma 3: Das Erstellen von Missionen erfordert meist ein wenig Erfahrung im Coden und viel Aufwand im Spiele-Editor. OPCOM löst das mit einem intuitiven UI und einer bis dahin einmaligen UX in Arma 3. Wirklich jeder kann sich mit wenigen Klicks ein eigenes Szenario erstellen und während dem Spielen fortlaufend anpassen.",
+      en: "Modification for Arma 3: building missions usually takes some coding experience and a lot of work in the game editor. OPCOM solves that with an intuitive UI and a UX unmatched in Arma 3 at the time. Anyone can put together their own scenario in a few clicks and keep adjusting it while playing.",
     },
     tags: "sqf · fsm · steam workshop",
     image: {
@@ -86,50 +84,35 @@ export const featured: FeaturedProject[] = [
       },
     ],
   },
-  {
-    title: "wombach.de",
-    url: "https://wombach.de",
-    status: {
-      label: { de: "live", en: "live" },
-      variant: "neutral",
-    },
-    description: {
-      de: "Redesign und Relaunch der Homepage für mein Heimatdorf, vom Konzept bis zur Umsetzung.",
-      en: "Redesign and relaunch of the website for my home village: from concept to build.",
-    },
-    tags: "astro · web · cms",
-    image: {
-      src: wombachHomepage,
-      alt: {
-        de: "wombach.de: Startseite der Dorf-Homepage",
-        en: "wombach.de: homepage of the village website",
-      },
-    },
-    highlights: [
-      {
-        de: "Interaktiver Dorfkalender: filterbar & abonnierbar",
-        en: "Interactive village calendar: filterable & subscribable",
-      },
-      {
-        de: "Halbjahresplaner im Querformat zum Selbst-Zusammenstellen",
-        en: "Customizable half-year planner in landscape format",
-      },
-      {
-        de: "Vereine, Stammtische, Kirche & Gewerbe an einem Ort",
-        en: "Clubs, socials, church & local businesses in one place",
-      },
-    ],
-  },
 ];
 
 export const listed: ListedProject[] = [
   {
+    number: "03",
+    title: "wombach.de",
+    url: "https://wombach.de",
+    problem: {
+      de: "23 Jahre altes Design, historisch gewachsene Struktur, hoher Pflegeaufwand.",
+      en: "A 23-year-old design, a grown structure and high maintenance effort.",
+    },
+    solution: {
+      de: "Redesign vom Konzept bis zur Umsetzung, inkl. interaktivem Dorfkalender.",
+      en: "Redesign from concept to build, incl. an interactive village calendar.",
+    },
+    meta: "astro · web · cms",
+    status: "live",
+  },
+  {
     number: "04",
     title: "discogs-plugin",
     url: "https://github.com/ai-mods/discogs-plugin",
-    description: {
-      de: "MCP-Server für die Discogs-API: Releases suchen, Vinyl-Sammlung und Wantlist verwalten.",
-      en: "MCP server for the Discogs API: search releases, manage your vinyl collection and wantlist.",
+    problem: {
+      de: "Aufwendige Suche nach neuen Platten-Releases, Wantlist-Pflege.",
+      en: "Time-consuming hunt for new vinyl releases, wantlist upkeep.",
+    },
+    solution: {
+      de: "MCP-Server für Discogs: KI sucht Releases, verwaltet Sammlung und Wantlist.",
+      en: "MCP server for Discogs: AI finds releases, manages collection and wantlist.",
     },
     meta: "mcp · typescript",
     status: "released",
@@ -138,9 +121,13 @@ export const listed: ListedProject[] = [
     number: "05",
     title: "webradio-plugin",
     url: "https://github.com/ai-mods/webradio-plugin",
-    description: {
-      de: "MCP-Server für die Radio-Browser-API: Internetradio-Sender weltweit suchen und entdecken.",
-      en: "MCP server for the Radio Browser API: search and discover internet radio stations worldwide.",
+    problem: {
+      de: "Sender suchen hieß raus aus Claude Cowork und rein in die Browser-Suche.",
+      en: "Finding a station meant leaving Claude Cowork for a browser search.",
+    },
+    solution: {
+      de: "MCP-Server für Radio-Browser-API: KI sucht und präsentiert Sender weltweit.",
+      en: "MCP server for Radio Browser API: AI finds and presents stations worldwide.",
     },
     meta: "mcp · node",
     status: "released",
@@ -149,9 +136,13 @@ export const listed: ListedProject[] = [
     number: "06",
     title: "tablet-toggle",
     url: "https://github.com/ai-mods/tablet-toggle",
-    description: {
-      de: "Windows-Tray-Utility zum Umschalten zwischen Laptop- und Tablet-Modus auf Convertibles.",
-      en: "A lightweight Windows tray utility that toggles between laptop and tablet mode on convertibles.",
+    problem: {
+      de: "Mit Tastatur wechselte mein 2-in-1 nicht in den Desktop-Modus.",
+      en: "Attaching the keyboard did not switch my 2-in-1 to desktop mode.",
+    },
+    solution: {
+      de: "Windows-Tray-Utility zum Umschalten zwischen Laptop- und Tablet-Modus.",
+      en: "A Windows tray utility that toggles between laptop and tablet mode.",
     },
     meta: "powershell · windows",
     status: "released",

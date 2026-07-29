@@ -1,8 +1,14 @@
 ---
+import { useTranslations, type Lang } from "../i18n/utils";
+
 interface Props {
+  lang: Lang;
   number: string;
   title: string;
-  description: string;
+  /** Omit for entries that describe responsibility rather than a fix. The
+   *  labels are then dropped entirely, so no lone "solution" is left. */
+  problem?: string;
+  solution: string;
   meta: string;
   /** Trailing column: release status for projects, period for work entries. */
   note: string;
@@ -10,7 +16,8 @@ interface Props {
   url?: string;
 }
 
-const { number, title, description, meta, note, url } = Astro.props;
+const { lang, number, title, problem, solution, meta, note, url } = Astro.props;
+const t = useTranslations(lang);
 const Tag = url ? "a" : "div";
 const linkProps = url
   ? { href: url, target: "_blank", rel: "noopener" }
@@ -21,7 +28,18 @@ const linkProps = url
   <span class="number">{number}</span>
   <div class="body">
     <div class="title">{title}</div>
-    <div class="description">{description}</div>
+    {
+      problem && (
+        <p class="line">
+          <span class="label">{t("listing.problem")}</span>
+          {problem}
+        </p>
+      )
+    }
+    <p class="line">
+      {problem && <span class="label">{t("listing.solution")}</span>}
+      {solution}
+    </p>
   </div>
   <span class="meta">{meta}</span>
   <span class="note">{note}</span>
@@ -30,7 +48,7 @@ const linkProps = url
 <style>
   .row {
     display: grid;
-    grid-template-columns: 64px 1fr 260px 150px;
+    grid-template-columns: 64px 1fr 240px 130px;
     gap: 0 24px;
     align-items: baseline;
     padding: 20px 8px;
@@ -60,11 +78,26 @@ const linkProps = url
     margin-bottom: 6px;
   }
 
-  .description {
-    max-width: 560px;
+  .line {
+    margin: 0 0 4px;
     font-size: 14px;
     line-height: 1.6;
     color: var(--text-muted);
+  }
+
+  .line:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Labelled so the structure is visible at a glance and gives a reason
+     to start reading. */
+  .label {
+    margin-right: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--acc);
   }
 
   .meta,
@@ -72,6 +105,11 @@ const linkProps = url
     font-family: var(--font-mono);
     font-size: 13px;
     color: var(--text-faint);
+  }
+
+  /* Centred so it does not collide with the right-aligned note column. */
+  .meta {
+    text-align: center;
   }
 
   .note {

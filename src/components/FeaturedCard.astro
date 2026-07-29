@@ -13,12 +13,7 @@ interface Props {
 const { project, lang } = Astro.props;
 ---
 
-<a
-  href={project.url}
-  target="_blank"
-  rel="noopener"
-  class:list={["card", { wide: project.wide }]}
->
+<a href={project.url} target="_blank" rel="noopener" class="card">
   <div class="head">
     <span class="title">{project.title}</span>
     <Pill label={project.status.label[lang]} variant={project.status.variant} />
@@ -103,10 +98,14 @@ const { project, lang } = Astro.props;
     color: var(--text-muted);
   }
 
+  /* The banners differ in ratio (1.90:1 vs 1.78:1). Until they are exported
+     to a common size, `contain` plus a filler keeps both cards identical
+     instead of cropping the wider one. */
   .media {
     aspect-ratio: 16 / 9;
     border-radius: 8px;
     border: 1px solid var(--border-card);
+    background: var(--bg);
     overflow: hidden;
   }
 
@@ -114,7 +113,7 @@ const { project, lang } = Astro.props;
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .placeholder {
@@ -166,55 +165,7 @@ const { project, lang } = Astro.props;
     color: var(--text-faint);
   }
 
-  .card.wide {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto 1fr auto;
-    grid-template-areas:
-      "head media"
-      "desc media"
-      "hl media"
-      "stats media"
-      "tags media";
-    column-gap: 40px;
-  }
-
-  .card.wide .highlights {
-    grid-area: hl;
-  }
-
-  .card.wide .head {
-    grid-area: head;
-  }
-
-  .card.wide .description {
-    grid-area: desc;
-  }
-
-  .card.wide .media {
-    grid-area: media;
-    align-self: center;
-    /* The Fusion banner is 1200x630 (1.9:1); forcing 16:9 would crop the
-       texts at its edges, so the wide card keeps the natural ratio. */
-    aspect-ratio: auto;
-  }
-
-  .card.wide .stats {
-    grid-area: stats;
-    align-self: end;
-  }
-
-  .card.wide .tags {
-    grid-area: tags;
-    align-self: end;
-  }
-
   @media (max-width: 768px) {
-    .card.wide {
-      display: flex;
-      flex-direction: column;
-    }
-
     .stats {
       gap: 20px 28px;
     }

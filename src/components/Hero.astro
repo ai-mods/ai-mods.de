@@ -9,37 +9,80 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
+/** Analysis, delivery, enablement: the three steps the hero promises. */
+const steps = [
+  {
+    number: "01",
+    phase: "hero.step1Phase",
+    title: "hero.step1Title",
+    text: "hero.step1Text",
+  },
+  {
+    number: "02",
+    phase: "hero.step2Phase",
+    title: "hero.step2Title",
+    text: "hero.step2Text",
+  },
+  {
+    number: "03",
+    phase: "hero.step3Phase",
+    title: "hero.step3Title",
+    text: "hero.step3Text",
+  },
+] as const;
 ---
 
 <div class="band">
   <div class="hero">
-    <div class="meta-row">
-      <span class="identity">{t("hero.identity")}</span>
-      {
-        siteConfig.available && (
-          <span class="avail">
-            {t("hero.availability")} {siteConfig.availableFrom}
-          </span>
-        )
-      }
-    </div>
+    <div class="columns">
+      <div class="pitch">
+        <div class="meta-row">
+          <span class="identity">{t("hero.identity")}</span>
+          {
+            siteConfig.available && (
+              <span class="avail">{t("hero.availability")}</span>
+            )
+          }
+        </div>
 
-    <h1 class="headline">
-      {t("hero.headline")}<span class="cursor" aria-hidden="true"></span>
-    </h1>
+        <h1 class="headline">{t("hero.headline")}</h1>
 
-    <p class="tagline">{t("hero.tagline")}</p>
+        <p class="tagline">{t("hero.tagline")}</p>
 
-    <p class="intro">{t("hero.intro")}</p>
+        <p class="intro">{t("hero.intro")}</p>
 
-    <div class="buttons">
-      <Button
-        href={siteConfig.links.linkedin}
-        label={t("hero.ctaPrimary")}
-        variant="primary"
-        external
-      />
-      <Button label={t("hero.ctaSecondary")} variant="secondary" data-cv-open />
+        <div class="buttons">
+          <Button
+            href={siteConfig.links.linkedin}
+            label={t("hero.ctaPrimary")}
+            variant="primary"
+            external
+          />
+          <Button
+            label={t("hero.ctaSecondary")}
+            variant="secondary"
+            data-cv-open
+          />
+        </div>
+      </div>
+
+      <ol class="steps">
+        {
+          steps.map((step, index) => (
+            <li class="step-item">
+              <div class="phase">{t(step.phase)}</div>
+              <div class:list={["step", { accent: index === 1 }]}>
+                <span class="step-number">{step.number}</span>
+                <div class="step-body">
+                  <div class="step-title">{t(step.title)}</div>
+                  <p class="step-text">{t(step.text)}</p>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
     </div>
   </div>
 </div>
@@ -102,35 +145,89 @@ const t = useTranslations(lang);
     white-space: nowrap;
   }
 
+  .columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 64px;
+    align-items: center;
+  }
+
+  /* No gap: the phase rows carry the spacing so their timeline segment can
+     bridge the full distance between two boxes. */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Phase label with a timeline segment, aligned to the step numbers. */
+  .phase {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0 14px 20px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-ghost);
+  }
+
+  .phase::before {
+    content: "";
+    align-self: stretch;
+    flex: none;
+    width: 2px;
+    border-radius: 2px;
+    background: var(--acc);
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    padding: 16px 20px;
+    /* Opaque so the dot pattern of the hero band does not show through. */
+    background: var(--surface);
+    border: 1px solid var(--border-card);
+    border-radius: 12px;
+  }
+
+  /* The middle step carries the actual differentiator: it is built, not advised. */
+  .step.accent {
+    background: linear-gradient(var(--acc-dim), var(--acc-dim)) var(--surface);
+    border-color: var(--acc);
+  }
+
+  .step-number {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--acc);
+  }
+
+  .step-title {
+    margin-bottom: 4px;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .step-text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
   .headline {
     margin: 0 0 28px;
     font-family: var(--font-mono);
-    font-size: 72px;
+    /* Scales down with the viewport so it still breaks into two lines
+       once the hero splits into two columns. */
+    font-size: clamp(40px, 3.6vw, 54px);
     line-height: 1.1;
     font-weight: 700;
     letter-spacing: -0.02em;
-    max-width: 940px;
-  }
-
-  .cursor {
-    display: inline-block;
-    width: 0.5em;
-    height: 0.95em;
-    background: var(--acc);
-    vertical-align: -0.08em;
-    margin-left: 0.12em;
-    animation: blink 1.1s steps(1) infinite;
-  }
-
-  @keyframes blink {
-    0%,
-    49% {
-      opacity: 1;
-    }
-    50%,
-    100% {
-      opacity: 0;
-    }
   }
 
   .tagline {
@@ -159,6 +256,13 @@ const t = useTranslations(lang);
   @media (min-width: 769px) and (max-width: 1200px) {
     .hero {
       --pad-x: 64px;
+    }
+  }
+
+  @media (max-width: 1080px) {
+    .columns {
+      grid-template-columns: 1fr;
+      gap: 44px;
     }
   }
 

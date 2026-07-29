@@ -7,24 +7,24 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    title: { de: "Prototypen & Tools", en: "Prototypes & Tools" },
+    title: { de: "Change", en: "Change" },
     text: {
-      de: "Von der Idee zum lauffähigen Prototyp. Ich baue Lösungen für echte Use-Cases. Egal ob Webapps, interne Tools oder Frameworks direkt in Claude und Codex.",
-      en: "From idea to working prototype: I build solutions for real use cases. Whether it's web apps, internal tools, or frameworks directly in Claude and Codex.",
+      de: "Erst Use Case, dann Strategie, dann Werkzeug. Datenschutz und Security von Anfang an mitdenken, den Menschen nie vergessen. Das ist mein Maßstab.",
+      en: "Use case first, then strategy, then tooling. Data protection and security considered from day one, the people never forgotten. That is my benchmark.",
     },
   },
   {
-    title: { de: "AI Enablement", en: "AI Enablement" },
+    title: { de: "Macher", en: "Maker" },
+    text: {
+      de: "Browser-Apps, Automationen und KI-Frameworks in Claude oder Copilot Studio. Nicht als Demo gebaut, sondern für den Betrieb, in dem sie täglich laufen.",
+      en: "Browser apps, automations and AI frameworks in Claude or Copilot Studio. Not built as a demo, but for the operation they run in every day.",
+    },
+  },
+  {
+    title: { de: "Enabler", en: "Enabler" },
     text: {
       de: "KI-Use-Cases erkennen, Workflows optimieren, Teams ins Boot holen: pragmatisch, leidenschaftlich und mit gemeinsamem Spaß am Erfolg.",
       en: "Spot AI use cases, optimize workflows, get teams on board: pragmatic, passionate, and with shared enjoyment of success.",
-    },
-  },
-  {
-    title: { de: "Mindset", en: "Mindset" },
-    text: {
-      de: "Ich arbeite nicht, um zu beeindrucken, sondern weil meine Lösungen im Alltag wirken. Das ist die Messlatte für den Erfolg von Change und Enablement.",
-      en: "I don't work to impress, I work because my solutions take effect in daily use. That is the benchmark for successful change and enablement.",
     },
   },
 ];

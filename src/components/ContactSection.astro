@@ -13,6 +13,7 @@ const t = useTranslations(lang);
 <section id="kontakt" class="contact">
   <div class="kicker">{t("contact.kicker")}</div>
   <h2 class="heading">{t("contact.heading")}</h2>
+  <p class="subheading">{t("contact.subheading")}</p>
   <p class="text">{t("contact.text")}</p>
 
   <a class="mail" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
@@ -24,12 +25,7 @@ const t = useTranslations(lang);
     <a href={siteConfig.links.linkedin} target="_blank" rel="noopener">
       {t("contact.linkedin")}
     </a>
-    <a href={siteConfig.links.steam} target="_blank" rel="noopener">
-      {t("contact.steam")}
-    </a>
   </div>
-
-  <p class="freelance-note">{t("contact.freelanceNote")}</p>
 </section>
 
 <style>
@@ -48,11 +44,19 @@ const t = useTranslations(lang);
   }
 
   .heading {
-    margin: 0 0 20px;
+    margin: 0 0 10px;
     font-family: var(--font-mono);
     font-size: 52px;
     font-weight: 700;
     letter-spacing: -0.02em;
+  }
+
+  .subheading {
+    margin: 0 0 24px;
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-dim);
   }
 
   .text {
@@ -80,12 +84,6 @@ const t = useTranslations(lang);
     font-family: var(--font-mono);
     font-size: 14px;
     color: var(--text-dim);
-  }
-
-  .freelance-note {
-    margin: 32px 0 0;
-    font-size: 13px;
-    color: var(--text-faint);
   }
 
   @media (max-width: 768px) {
