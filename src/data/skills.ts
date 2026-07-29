@@ -8,14 +8,32 @@ export type Skill = {
 export const skills: Skill[] = [
   {
     title: {
-      de: "Enablement & Strategie",
-      en: "Enablement & Strategy",
+      de: "Strategie & Use-Cases",
+      en: "Strategy & Use Cases",
     },
     lines: [
       { de: "KI-Use-Cases erkennen", en: "Spotting AI use cases" },
-      { de: "Aktivieren & schulen", en: "Enabling & training" },
-      { de: "Stakeholder-Sprache", en: "Stakeholder language" },
+      {
+        de: "Nutzen vs. KI-Theater",
+        en: "Value vs. AI theater",
+      },
+      {
+        de: "Nachhaltig planen",
+        en: "Planning to last",
+      },
       { de: "Cross-Domain-Expertise", en: "Cross-domain expertise" },
+    ],
+  },
+  {
+    title: {
+      de: "Change & Enablement",
+      en: "Change & Enablement",
+    },
+    lines: [
+      { de: "Teams aktivieren & schulen", en: "Enabling & training teams" },
+      { de: "Stakeholder-Sprache", en: "Stakeholder language" },
+      { de: "Adoption begleiten", en: "Guiding adoption" },
+      { de: "Templates & Playbooks", en: "Templates & playbooks" },
     ],
   },
   {
@@ -38,17 +56,8 @@ export const skills: Skill[] = [
     lines: [
       { de: "Power Platform · n8n", en: "Power Platform · n8n" },
       { de: "Copilot Studio", en: "Copilot Studio" },
-      { de: "Salesforce", en: "Salesforce" },
       { de: "Workflow-Design", en: "Workflow design" },
-    ],
-  },
-  {
-    title: { de: "Web & Design", en: "Web & Design" },
-    lines: [
-      { de: "Konzept & Umsetzung", en: "Concept & build" },
-      { de: "Astro · HTML · CMS", en: "Astro · HTML · CMS" },
-      { de: "TypeScript · React", en: "TypeScript · React" },
-      { de: "Corporate Design", en: "Corporate design" },
+      { de: "Browser-Tools", en: "Browser tools" },
     ],
   },
 ];

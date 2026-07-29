@@ -21,10 +21,10 @@ export const services: Service[] = [
     },
   },
   {
-    title: { de: "Websites", en: "Websites" },
+    title: { de: "Mindset", en: "Mindset" },
     text: {
-      de: "Webauftritte für Vereine, Betriebe oder Bands. Konzept, Design und Umsetzung aus einer Hand, mit CMS zum Selbst-Pflegen statt Agentur-Abhängigkeit.",
-      en: "Web presences for clubs, local businesses, bands, or portfolios. Concept, design, and implementation from a single source, with a CMS for self-maintenance instead of agency dependency.",
+      de: "Ich arbeite nicht, um zu beeindrucken, sondern weil meine Lösungen im Alltag wirken. Das ist die Messlatte für den Erfolg von Change und Enablement.",
+      en: "I don't work to impress, I work because my solutions take effect in daily use. That is the benchmark for successful change and enablement.",
     },
   },
 ];

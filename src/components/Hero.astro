@@ -13,8 +13,8 @@ const t = useTranslations(lang);
 
 <div class="band">
   <div class="hero">
-    <div class="prompt-row">
-      <span class="prompt">{t("hero.prompt")}</span>
+    <div class="meta-row">
+      <span class="identity">{t("hero.identity")}</span>
       {
         siteConfig.available && (
           <span class="avail">
@@ -39,12 +39,7 @@ const t = useTranslations(lang);
         variant="primary"
         external
       />
-      <Button
-        href={siteConfig.links.github}
-        label={t("hero.ctaSecondary")}
-        variant="secondary"
-        external
-      />
+      <Button label={t("hero.ctaSecondary")} variant="secondary" data-cv-open />
     </div>
   </div>
 </div>
@@ -82,7 +77,7 @@ const t = useTranslations(lang);
     border-bottom: 1px solid var(--border);
   }
 
-  .prompt-row {
+  .meta-row {
     display: flex;
     align-items: center;
     gap: 18px;
@@ -90,7 +85,7 @@ const t = useTranslations(lang);
     flex-wrap: wrap;
   }
 
-  .prompt {
+  .identity {
     font-family: var(--font-mono);
     font-size: 14px;
     color: var(--acc);
@@ -160,7 +155,7 @@ const t = useTranslations(lang);
     align-items: center;
   }
 
-  /* Gewollte Einrückung gegenüber den Sektionen — nur im Tablet-Band */
+  /* Gewollte Einrückung gegenüber den Sektionen, nur im Tablet-Band */
   @media (min-width: 769px) and (max-width: 1200px) {
     .hero {
       --pad-x: 64px;

@@ -11,7 +11,7 @@ const t = useTranslations(lang);
 ---
 
 <section id="kontakt" class="contact">
-  <div class="prompt">{t("contact.prompt")}</div>
+  <div class="kicker">{t("contact.kicker")}</div>
   <h2 class="heading">{t("contact.heading")}</h2>
   <p class="text">{t("contact.text")}</p>
 
@@ -28,6 +28,8 @@ const t = useTranslations(lang);
       {t("contact.steam")}
     </a>
   </div>
+
+  <p class="freelance-note">{t("contact.freelanceNote")}</p>
 </section>
 
 <style>
@@ -38,7 +40,7 @@ const t = useTranslations(lang);
     text-align: center;
   }
 
-  .prompt {
+  .kicker {
     font-family: var(--font-mono);
     font-size: 14px;
     color: var(--acc);
@@ -78,6 +80,12 @@ const t = useTranslations(lang);
     font-family: var(--font-mono);
     font-size: 14px;
     color: var(--text-dim);
+  }
+
+  .freelance-note {
+    margin: 32px 0 0;
+    font-size: 13px;
+    color: var(--text-faint);
   }
 
   @media (max-width: 768px) {

@@ -53,8 +53,8 @@ export const featured: FeaturedProject[] = [
     image: {
       src: fusionBanner,
       alt: {
-        de: "Project Fusion Banner: Your Compass. Your Agents. One Team. — Early Access coming soon",
-        en: "Project Fusion banner: Your Compass. Your Agents. One Team. — early access coming soon",
+        de: "Project Fusion Banner: Your Compass. Your Agents. One Team. Early Access coming soon",
+        en: "Project Fusion banner: Your Compass. Your Agents. One Team. Early access coming soon",
       },
     },
   },

@@ -1,0 +1,859 @@
+---
+import { Image } from "astro:assets";
+import portrait from "../assets/chris-portrait.webp";
+import { siteConfig } from "../config";
+import { useTranslations, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+/**
+ * The CV sheet is German only for now. Once an English version exists, branch
+ * on `lang` here and render the translated stations instead.
+ *
+ * Postal address, phone number and date of birth are deliberately omitted: this
+ * page is public and crawlable, so only publishable data belongs in the sheet.
+ */
+---
+
+<dialog id="cv-dialog" aria-labelledby="cv-name">
+  <div class="bar">
+    <button type="button" class="action" data-cv-print>{t("cv.print")}</button>
+    <button type="button" class="action" data-cv-close>{t("cv.close")}</button>
+  </div>
+
+  <div class="viewport">
+    <div class="page">
+      <aside class="sidebar">
+        <div class="photo-wrap">
+          <Image src={portrait} alt="Christian Perkuhn" width={220} />
+        </div>
+
+        <div class="name-block">
+          <p class="name" id="cv-name">Christian Perkuhn</p>
+          <p class="name-tagline">Lösungen, die im Alltag ankommen.</p>
+          <div class="contact">
+            <div>Würzburg</div>
+            <div>
+              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> ·
+              <a class="web" href="https://ai-mods.de">ai-mods.de</a>
+            </div>
+          </div>
+        </div>
+
+        <section>
+          <h3>Charakter</h3>
+          <div class="pills">
+            <span class="pill">Proaktiv</span>
+            <span class="pill">Adaptiv</span>
+            <span class="pill">Kreativ</span>
+            <span class="pill">Team-Orientiert</span>
+            <span class="pill">Analytisch</span>
+          </div>
+        </section>
+
+        <section>
+          <h3>Kernkompetenzen</h3>
+          <div class="skill-row">
+            <span class="skill-label">AI Strategy &amp; Practice</span>
+            <span class="tag adv">seit 2023</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">AI Frameworks &amp; Agents</span>
+            <span class="tag adv">seit 2024</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Leadership &amp; Training</span>
+            <span class="tag adv">seit 2008</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Enablement &amp; Adoption</span>
+            <span class="tag adv">seit 2008</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Workflows &amp; Automation</span>
+            <span class="tag adv">seit 2020</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Concept &amp; Delivery</span>
+            <span class="tag adv">seit 2008</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Prototyping &amp; Apps</span>
+            <span class="tag adv">seit 2023</span>
+          </div>
+        </section>
+
+        <section>
+          <h3>Werkzeuge</h3>
+          <div class="skill-row">
+            <span class="skill-label">Claude Code / Codex</span>
+            <span class="dots">
+              <span class="dot on"></span><span class="dot on"></span><span
+                class="dot on"></span><span class="dot on"></span><span
+                class="dot on"></span>
+            </span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Power Platform / n8n</span>
+            <span class="dots">
+              <span class="dot on"></span><span class="dot on"></span><span
+                class="dot on"></span><span class="dot"></span><span class="dot"
+              ></span>
+            </span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Confluence / Jira</span>
+            <span class="dots">
+              <span class="dot on"></span><span class="dot on"></span><span
+                class="dot on"></span><span class="dot on"></span><span
+                class="dot"></span>
+            </span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">CRM / Salesforce</span>
+            <span class="dots">
+              <span class="dot on"></span><span class="dot on"></span><span
+                class="dot on"></span><span class="dot on"></span><span
+                class="dot"></span>
+            </span>
+          </div>
+        </section>
+
+        <section>
+          <h3>Technische Basis</h3>
+          <div class="skill-row">
+            <span class="skill-label">HTML / Tailwind CSS</span>
+            <span class="dots">
+              <span class="dot on"></span><span class="dot on"></span><span
+                class="dot on"></span><span class="dot on"></span><span
+                class="dot on"></span>
+            </span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">TypeScript / React</span>
+            <span class="dots">
+              <span class="dot on"></span><span class="dot on"></span><span
+                class="dot on"></span><span class="dot on"></span><span
+                class="dot"></span>
+            </span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Python / SQL</span>
+            <span class="dots">
+              <span class="dot on"></span><span class="dot on"></span><span
+                class="dot on"></span><span class="dot"></span><span class="dot"
+              ></span>
+            </span>
+          </div>
+        </section>
+
+        <section>
+          <h3>Projekte &amp; Meilensteine</h3>
+          <div class="skill-row">
+            <span class="skill-label">AI-Analyse &amp; Beratung</span>
+            <span class="tag role">Flyeralarm</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Dachmarken-Strategie</span>
+            <span class="tag role">WVV-GmbH</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">Produktivitäts-Tools</span>
+            <span class="tag role">Flyeralarm</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">ISO Management-Systeme</span>
+            <span class="tag role">IHK-Dozent</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-label">AI-Plattform</span>
+            <a
+              class="tag link"
+              href="https://project-fusion.de"
+              target="_blank"
+              rel="noopener">project-fusion.de</a
+            >
+          </div>
+        </section>
+
+        <section>
+          <h3>Sprachen</h3>
+          <div class="languages">
+            <div>
+              <div class="lang-name">Deutsch</div>
+              <div>Muttersprache</div>
+              <div>Pressesicher</div>
+            </div>
+            <div>
+              <div class="lang-name">Englisch</div>
+              <div>Business-Ready</div>
+              <div>Wort &amp; Schrift</div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Interessen</h3>
+          <div class="interests">
+            <div class="interest">
+              <svg viewBox="0 0 640 640" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M363.8 160L421.4 256L288 256L288 160L363.8 160zM496 256L418.6 127.1C407.1 107.8 386.2 96 363.8 96L256 96C238.3 96 224 110.3 224 128L224 256L80 256C53.5 256 32 277.5 32 304L32 384C14.3 384 0 398.3 0 416C0 433.7 14.3 448 32 448L64.4 448C64.2 450.6 64 453.3 64 456C64 504.6 103.4 544 152 544C200.6 544 240 504.6 240 456C240 453.3 239.9 450.6 239.6 448L400.3 448C400.1 450.6 399.9 453.3 399.9 456C399.9 504.6 439.3 544 487.9 544C536.5 544 575.9 504.6 575.9 456C575.9 453.3 575.8 450.6 575.5 448L607.9 448C625.6 448 639.9 433.7 639.9 416C639.9 398.3 625.6 384 607.9 384L607.9 304C607.9 277.5 586.4 256 559.9 256L495.9 256zM112 456C112 433.9 129.9 416 152 416C174.1 416 192 433.9 192 456C192 478.1 174.1 496 152 496C129.9 496 112 478.1 112 456zM488 416C510.1 416 528 433.9 528 456C528 478.1 510.1 496 488 496C465.9 496 448 478.1 448 456C448 433.9 465.9 416 488 416z"
+                ></path>
+              </svg>
+              <span>RC-Cars</span>
+            </div>
+            <div class="interest">
+              <svg viewBox="0 0 640 640" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M408.8 116.3C420 102.6 418 82.5 404.3 71.3C390.6 60.1 370.5 62.1 359.3 75.8L320.1 123.8L280.9 75.8C269.6 62.1 249.4 60 235.7 71.2C222 82.4 220 102.6 231.2 116.2L278.6 174.2L76.6 421.1C68.5 431.1 64 443.6 64 456.6L64 496C64 522.5 85.5 544 112 544L528 544C554.5 544 576 522.5 576 496L576 456.6C576 443.7 571.5 431.1 563.3 421.1L361.3 174.2L408.7 116.2zM320 352L432 480L208 480L320 352z"
+                ></path>
+              </svg>
+              <span>Outdoors</span>
+            </div>
+            <div class="interest">
+              <svg viewBox="0 0 640 640" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M320 80C377.4 80 424 126.6 424 184C424 241.4 377.4 288 320 288C262.6 288 216 241.4 216 184C216 126.6 262.6 80 320 80zM96 152C135.8 152 168 184.2 168 224C168 263.8 135.8 296 96 296C56.2 296 24 263.8 24 224C24 184.2 56.2 152 96 152zM0 480C0 409.3 57.3 352 128 352C140.8 352 153.2 353.9 164.9 357.4C132 394.2 112 442.8 112 496L112 512C112 523.4 114.4 534.2 118.7 544L32 544C14.3 544 0 529.7 0 512L0 480zM521.3 544C525.6 534.2 528 523.4 528 512L528 496C528 442.8 508 394.2 475.1 357.4C486.8 353.9 499.2 352 512 352C582.7 352 640 409.3 640 480L640 512C640 529.7 625.7 544 608 544L521.3 544zM472 224C472 184.2 504.2 152 544 152C583.8 152 616 184.2 616 224C616 263.8 583.8 296 544 296C504.2 296 472 263.8 472 224zM160 496C160 407.6 231.6 336 320 336C408.4 336 480 407.6 480 496L480 512C480 529.7 465.7 544 448 544L192 544C174.3 544 160 529.7 160 512L160 496z"
+                ></path>
+              </svg>
+              <span>Social</span>
+            </div>
+            <div class="interest">
+              <svg viewBox="0 0 640 640" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M119.7 263.7L150.6 294.6C156.6 300.6 164.7 304 173.2 304L194.7 304C203.2 304 211.3 307.4 217.3 313.4L246.6 342.7C252.6 348.7 256 356.8 256 365.3L256 402.8C256 411.3 259.4 419.4 265.4 425.4L278.7 438.7C284.7 444.7 288.1 452.8 288.1 461.3L288.1 480C288.1 497.7 302.4 512 320.1 512C337.8 512 352.1 497.7 352.1 480L352.1 477.3C352.1 468.8 355.5 460.7 361.5 454.7L406.8 409.4C412.8 403.4 416.2 395.3 416.2 386.8L416.2 352.1C416.2 334.4 401.9 320.1 384.2 320.1L301.5 320.1C293 320.1 284.9 316.7 278.9 310.7L262.9 294.7C258.7 290.5 256.3 284.7 256.3 278.7C256.3 266.2 266.4 256.1 278.9 256.1L313.6 256.1C326.1 256.1 336.2 246 336.2 233.5C336.2 227.5 333.8 221.7 329.6 217.5L309.9 197.8C306 194 304 189.1 304 184C304 178.9 306 174 309.7 170.3L327 153C332.8 147.2 336.1 139.3 336.1 131.1C336.1 123.9 333.7 117.4 329.7 112.2C326.5 112.1 323.3 112 320.1 112C224.7 112 144.4 176.2 119.8 263.7zM528 320C528 285.4 519.6 252.8 504.6 224.2C498.2 225.1 491.9 228.1 486.7 233.3L473.3 246.7C467.3 252.7 463.9 260.8 463.9 269.3L463.9 304C463.9 321.7 478.2 336 495.9 336L520 336C522.5 336 525 335.7 527.3 335.2C527.7 330.2 527.8 325.1 527.8 320zM64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576C178.6 576 64 461.4 64 320z"
+                ></path>
+              </svg>
+              <span>Travel</span>
+            </div>
+          </div>
+        </section>
+      </aside>
+
+      <main class="main">
+        <section class="block">
+          <h2>Profil</h2>
+          <p class="profile">
+            Mein Weg war nicht gerade, aber er hat jetzt ein Ziel. Jede Station
+            hat aufgebaut, was heute beim Planen und Einsatz von KI trägt. Wenn
+            Ideen den Beweis brauchen, baue ich ihn selbst. Menschen gewinne ich
+            nicht mit KI-Theater, sondern mit Verständnis und Lösungen, die im
+            Alltag ankommen.
+          </p>
+        </section>
+
+        <section class="block">
+          <h2>Karriereweg</h2>
+
+          <div class="station">
+            <p class="station-title">Supervisor Graphical Support</p>
+            <p class="station-meta">
+              Flyeralarm GmbH • Customer Success • Jul 2023 - Heute
+            </p>
+            <ul class="station-bullets">
+              <li>Operative Teamleitung und Ressourcenplanung</li>
+              <li>Schnittstelle zu IT, Projektmanagement und anderen Teams</li>
+              <li>
+                Druckdaten-Checks automatisiert &amp; zwei Tools entwickelt
+              </li>
+              <li>
+                Veränderungen ins Team getragen, kommuniziert und geschult
+              </li>
+              <li>AI Kontaktperson und AI schrittweise im Team etabliert</li>
+              <li>Anforderungen, Chatbot-Tests und Lastenheft im AI-Projekt</li>
+            </ul>
+          </div>
+
+          <div class="station">
+            <p class="station-title">Customer Consultant Graphical Support</p>
+            <p class="station-meta">
+              Flyeralarm GmbH • Customer Success • Feb 2020 - Jul 2023
+            </p>
+            <ul class="station-bullets">
+              <li>Kundenberatung zu Druckdaten und Druckprodukten</li>
+              <li>Manuelles Prüfen und Anpassen von Druckdaten</li>
+              <li>Sonderaufgaben zu Prozessen und Customer Journey</li>
+            </ul>
+          </div>
+
+          <div class="station">
+            <p class="station-title">Berufliche Neuorientierung</p>
+            <p class="station-meta">
+              Freelancing / Selbststudium • Okt 2016 - Jan 2020
+            </p>
+            <ul class="station-bullets">
+              <li>Freelancing &amp; Kurzanstellung (Technik und Grafik)</li>
+              <li>Selbststudium Coding, Grafikdesign und 3D (Blender)</li>
+            </ul>
+          </div>
+
+          <div class="station">
+            <p class="station-title">Referent Unternehmenskommunikation</p>
+            <p class="station-meta">
+              WVV-GmbH • Unternehmensentwicklung • Jan 2011 - Sep 2016
+            </p>
+            <ul class="station-bullets">
+              <li>Dachmarken- und Internet-Strategie entwickelt</li>
+              <li>Internet-Relaunch und Image-Kampagne durchgeführt</li>
+              <li>Konzeption, Planung und Umsetzung von CI/CD-Relaunches</li>
+              <li>Konzernweites Stakeholder- &amp; Change-Management</li>
+              <li>Projektführung und Budgetverantwortlichkeit</li>
+            </ul>
+          </div>
+
+          <div class="station">
+            <p class="station-title">Marktpartnerbetreuer (Marketing)</p>
+            <p class="station-meta">
+              WVV-GmbH • Marketing • Jul 2008 - Dez 2010
+            </p>
+            <ul class="station-bullets">
+              <li>Marktpartner-, Kunden- und Eventmanagement</li>
+              <li>Incentive-Maßnahmen für Innungen &amp; Handwerksbetriebe</li>
+              <li>Konzepte &amp; Events zu E-Mobilität und Energieeffizienz</li>
+            </ul>
+          </div>
+
+          <div class="station">
+            <p class="station-title">
+              Techn. Spezialist Vermessung/Dokumentation
+            </p>
+            <p class="station-meta">
+              WVV-GmbH • Stadtwerke Würzburg • Mär 2004 - Jun 2008
+            </p>
+            <ul class="station-bullets">
+              <li>Versorgungsleitungen in Smallworld GIS dokumentiert</li>
+              <li>Digitalisierung, Datenbankpflege und Statistiken</li>
+              <li>Top-Performer im unternehmensweiten Ideenmanagement</li>
+            </ul>
+          </div>
+
+          <div class="station">
+            <p class="station-title">Techn. Spezialist Weichen/Fahrleitungen</p>
+            <p class="station-meta">
+              WVV-GmbH • Würzburger Straßenbahn • Okt 2002 - Feb 2004
+            </p>
+            <ul class="station-bullets">
+              <li>Wartung von Elektroanlagen und Gleisweichen</li>
+            </ul>
+          </div>
+
+          <div class="station">
+            <p class="station-title">Elektroinstallateur</p>
+            <p class="station-meta">
+              Karl Kirsch &amp; Söhne GmbH • Technik • Jul 2002 - Sep 2002
+            </p>
+            <ul class="station-bullets">
+              <li>Installation, Analyse und Wartung elektrischer Anlagen</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="block education">
+          <h2>Bildung</h2>
+
+          <div class="station">
+            <p class="station-title">
+              Weiterbildung für „Laterale Führungskräfte“
+            </p>
+            <p class="station-meta">
+              Trainloxx • Flyeralarm Inhouse • Jan 2025
+            </p>
+          </div>
+
+          <div class="station">
+            <p class="station-title">
+              Principles &amp; Practices for Great UI Design
+            </p>
+            <p class="station-meta">Udemy Online-Seminar • Mai 2024</p>
+          </div>
+
+          <div class="station">
+            <p class="station-title">
+              Referent Marketing/Unternehmenskomm. (IHK)
+            </p>
+            <p class="station-meta">
+              IHK Würzburg-Schweinfurt • Feb 2010 - Sep 2010
+            </p>
+          </div>
+
+          <div class="station">
+            <p class="station-title">Technischer Fachwirt (IHK)</p>
+            <p class="station-meta">
+              IHK Würzburg-Schweinfurt • Sep 2007 - Jul 2009
+            </p>
+          </div>
+
+          <div class="station">
+            <p class="station-title">Berufsausbildung Elektroinstallateur</p>
+            <p class="station-meta">
+              Berufsschule Lohr am Main • Sep 1998 - Jul 2002
+            </p>
+          </div>
+
+          <div class="station">
+            <p class="station-title">Mittlere Reife</p>
+            <p class="station-meta">
+              Georg-Ludwig-Rexroth-Realschule Lohr am Main • Jul 1998
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById("cv-dialog") as HTMLDialogElement;
+  const viewport = dialog.querySelector<HTMLElement>(".viewport");
+
+  /** A4 width (210mm) in CSS pixels at 96dpi. */
+  const SHEET_WIDTH = 794;
+
+  const fit = () => {
+    if (!viewport) return;
+    const available = viewport.clientWidth - 32;
+    const scale = Math.min(1, available / SHEET_WIDTH);
+    viewport.style.setProperty("--cv-scale", String(scale));
+  };
+
+  const open = () => {
+    dialog.showModal();
+    document.body.classList.add("cv-open");
+    fit();
+  };
+
+  document
+    .querySelectorAll("[data-cv-open]")
+    .forEach((el) => el.addEventListener("click", open));
+
+  dialog
+    .querySelector("[data-cv-close]")
+    ?.addEventListener("click", () => dialog.close());
+
+  dialog
+    .querySelector("[data-cv-print]")
+    ?.addEventListener("click", () => window.print());
+
+  // A click lands on the dialog element itself only when it hits the backdrop.
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  // Covers the close button, the backdrop and the Escape key in one place.
+  dialog.addEventListener("close", () => {
+    document.body.classList.remove("cv-open");
+  });
+
+  window.addEventListener("resize", () => {
+    if (dialog.open) fit();
+  });
+</script>
+
+<style>
+  #cv-dialog {
+    width: min(880px, 96vw);
+    max-height: 92vh;
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+  }
+
+  #cv-dialog::backdrop {
+    background: rgb(0 0 0 / 70%);
+  }
+
+  .bar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .action {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--text-soft);
+    background: none;
+    border: 1px solid var(--border-btn);
+    border-radius: var(--radius-btn);
+    padding: 9px 18px;
+    cursor: pointer;
+  }
+
+  .action:hover {
+    color: var(--acc);
+    border-color: var(--acc);
+  }
+
+  .viewport {
+    max-height: calc(92vh - 62px);
+    overflow-y: auto;
+    padding: 16px;
+    background: #e9e9e9;
+  }
+
+  /* The sheet keeps its A4 proportions; zoom scales it into narrow viewports
+     while still reserving the correct layout space. */
+  .page {
+    zoom: var(--cv-scale, 1);
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(
+      to right,
+      var(--cv-dark) 0 72mm,
+      var(--cv-paper) 72mm 100%
+    );
+    box-shadow: 0 0 8mm rgb(0 0 0 / 15%);
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: 9.5pt;
+    line-height: 1.45;
+    color: var(--cv-ink);
+  }
+
+  .sidebar {
+    width: 80mm;
+    flex-shrink: 0;
+    background: var(--cv-dark);
+    color: var(--cv-on-dark);
+    padding: 8mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+
+  .photo-wrap {
+    width: 42mm;
+    height: 42mm;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 1.5mm solid var(--cv-accent);
+    overflow: hidden;
+    background: #333;
+  }
+
+  .photo-wrap :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .name-block {
+    text-align: center;
+  }
+
+  .name {
+    font-size: 15pt;
+    font-weight: 700;
+    margin: 0 0 1mm;
+    line-height: 1.1;
+  }
+
+  .name-tagline {
+    font-size: 8.5pt;
+    font-weight: 400;
+    color: var(--cv-accent);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .contact {
+    position: relative;
+    text-align: center;
+    font-size: 8pt;
+    line-height: 1.5;
+    margin-top: 2mm;
+    padding-top: 2mm;
+  }
+
+  .contact::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30mm;
+    height: 0.5pt;
+    background: rgb(255 255 255 / 25%);
+  }
+
+  .contact a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .contact .web {
+    color: var(--cv-accent);
+  }
+
+  .sidebar h3 {
+    font-size: 11pt;
+    font-weight: 700;
+    margin: 0 0 1.5mm;
+    letter-spacing: 0.5pt;
+    text-transform: uppercase;
+    text-align: center;
+    color: rgb(255 255 255 / 60%);
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5mm;
+    justify-content: center;
+    padding-bottom: 1mm;
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 1.2mm 2.8mm;
+    border: 0.5pt solid var(--cv-accent);
+    border-radius: 8pt;
+    font-size: 8.5pt;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .skill-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2mm;
+    font-size: 9pt;
+    margin-bottom: 1mm;
+  }
+
+  .skill-label {
+    line-height: 1.2;
+  }
+
+  .tag {
+    font-size: 8pt;
+    letter-spacing: 0.5pt;
+    text-transform: uppercase;
+    color: var(--cv-accent);
+    white-space: nowrap;
+  }
+
+  .tag.adv,
+  .tag.role {
+    color: rgb(255 255 255 / 55%);
+  }
+
+  .tag.link {
+    text-transform: none;
+    letter-spacing: 0;
+    text-decoration: none;
+  }
+
+  .dots {
+    display: inline-flex;
+    gap: 1mm;
+  }
+
+  .dot {
+    width: 2.5mm;
+    height: 2.5mm;
+    border-radius: 50%;
+    background: var(--cv-dot-off);
+  }
+
+  .dot.on {
+    background: var(--cv-accent);
+  }
+
+  .languages {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2mm;
+    text-align: center;
+    font-size: 9pt;
+    line-height: 1.35;
+  }
+
+  .languages .lang-name {
+    font-weight: 700;
+    color: var(--cv-accent);
+    margin-bottom: 1mm;
+  }
+
+  .interests {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2mm 1mm;
+    text-align: center;
+    font-size: 8pt;
+    color: rgb(255 255 255 / 55%);
+  }
+
+  .interest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1mm;
+  }
+
+  .interest svg {
+    width: 8mm;
+    height: 8mm;
+    color: var(--cv-accent);
+  }
+
+  .main {
+    flex: 1;
+    min-width: 0;
+    padding: 8mm;
+    background: var(--cv-paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+
+  .main h2 {
+    font-size: 14pt;
+    font-weight: 800;
+    margin: 0 0 1mm;
+    line-height: 1;
+    letter-spacing: 0.5pt;
+    text-transform: uppercase;
+    color: var(--cv-accent-ink);
+  }
+
+  .block {
+    margin: 0;
+    padding: 0;
+  }
+
+  .profile {
+    margin: 0;
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+
+  .station {
+    margin-bottom: 2mm;
+    break-inside: avoid;
+  }
+
+  .block > .station:last-child {
+    margin-bottom: 0;
+  }
+
+  .education .station {
+    margin-bottom: 1mm;
+  }
+
+  .station-title {
+    font-size: 9pt;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    color: var(--cv-ink);
+  }
+
+  .station-meta {
+    font-size: 9pt;
+    color: var(--cv-ink-muted);
+    margin: 0;
+  }
+
+  .station-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .station-bullets li {
+    font-size: 9pt;
+    line-height: 1.3;
+    padding-left: 3mm;
+    position: relative;
+  }
+
+  .station-bullets li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--cv-accent-ink);
+  }
+</style>
+
+<style is:global>
+  :root {
+    --cv-dark: hsl(220 16% 14%);
+    --cv-paper: #fff;
+    --cv-accent: oklch(0.8 0.16 235);
+    --cv-accent-ink: oklch(0.6 0.16 235);
+    --cv-ink: #1a1a1a;
+    --cv-ink-muted: #555;
+    --cv-on-dark: rgb(255 255 255 / 90%);
+    --cv-dot-off: #4a4a4a;
+  }
+
+  /* Print the CV sheet alone: hide the page behind it and drop the toolbar. */
+  @media print {
+    body.cv-open {
+      background: #fff;
+    }
+
+    body.cv-open > *:not(#cv-dialog) {
+      display: none !important;
+    }
+
+    body.cv-open #cv-dialog {
+      position: static;
+      display: block;
+      width: 100%;
+      max-width: none;
+      max-height: none;
+      border: 0;
+      border-radius: 0;
+      overflow: visible;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body.cv-open #cv-dialog .bar {
+      display: none;
+    }
+
+    body.cv-open #cv-dialog .viewport {
+      max-height: none;
+      overflow: visible;
+      padding: 0;
+      background: #fff;
+    }
+
+    body.cv-open #cv-dialog .page {
+      zoom: 1;
+      box-shadow: none;
+      margin: 0;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+  }
+</style>

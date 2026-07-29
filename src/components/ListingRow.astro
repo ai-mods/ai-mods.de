@@ -1,24 +1,31 @@
 ---
-import type { ListedProject } from "../data/projects";
-import type { Lang } from "../i18n/utils";
-
 interface Props {
-  project: ListedProject;
-  lang: Lang;
+  number: string;
+  title: string;
+  description: string;
+  meta: string;
+  /** Trailing column: release status for projects, period for work entries. */
+  note: string;
+  /** Omit for entries without a public link; the row then renders as plain. */
+  url?: string;
 }
 
-const { project, lang } = Astro.props;
+const { number, title, description, meta, note, url } = Astro.props;
+const Tag = url ? "a" : "div";
+const linkProps = url
+  ? { href: url, target: "_blank", rel: "noopener" }
+  : undefined;
 ---
 
-<a href={project.url} target="_blank" rel="noopener" class="row">
-  <span class="number">{project.number}</span>
+<Tag class="row" {...linkProps}>
+  <span class="number">{number}</span>
   <div class="body">
-    <div class="title">{project.title}</div>
-    <div class="description">{project.description[lang]}</div>
+    <div class="title">{title}</div>
+    <div class="description">{description}</div>
   </div>
-  <span class="meta">{project.meta}</span>
-  <span class="status">{project.status}</span>
-</a>
+  <span class="meta">{meta}</span>
+  <span class="note">{note}</span>
+</Tag>
 
 <style>
   .row {
@@ -35,7 +42,7 @@ const { project, lang } = Astro.props;
     border-bottom: 1px solid var(--border);
   }
 
-  .row:hover {
+  a.row:hover {
     border-color: var(--acc);
     opacity: 1;
   }
@@ -61,13 +68,13 @@ const { project, lang } = Astro.props;
   }
 
   .meta,
-  .status {
+  .note {
     font-family: var(--font-mono);
     font-size: 13px;
     color: var(--text-faint);
   }
 
-  .status {
+  .note {
     text-align: right;
   }
 
@@ -76,7 +83,7 @@ const { project, lang } = Astro.props;
       grid-template-columns: auto auto 1fr;
       grid-template-areas:
         "body body body"
-        "number meta status";
+        "number meta note";
       gap: 10px 14px;
     }
 
@@ -92,8 +99,8 @@ const { project, lang } = Astro.props;
       grid-area: meta;
     }
 
-    .status {
-      grid-area: status;
+    .note {
+      grid-area: note;
     }
   }
 </style>

@@ -8,9 +8,11 @@ import SkillCard from "./SkillCard.astro";
 import ServiceCard from "./ServiceCard.astro";
 import AboutSection from "./AboutSection.astro";
 import ContactSection from "./ContactSection.astro";
+import CvModal from "./CvModal.astro";
 import ToTopButton from "./ToTopButton.astro";
 import SiteFooter from "./SiteFooter.astro";
 import { featured, listed } from "../data/projects";
+import { shaped, built } from "../data/work";
 import { skills } from "../data/skills";
 import { services } from "../data/services";
 import { useTranslations, type Lang } from "../i18n/utils";
@@ -28,20 +30,7 @@ const t = useTranslations(lang);
 <main>
   <Hero lang={lang} />
 
-  <SectionShell id="projekte" kicker={t("projects.kicker")}>
-    <div class="featured-grid">
-      {
-        featured.map((project) => (
-          <FeaturedCard project={project} lang={lang} />
-        ))
-      }
-    </div>
-    <div class="listings">
-      {listed.map((project) => <ListingRow project={project} lang={lang} />)}
-    </div>
-  </SectionShell>
-
-  <SectionShell id="skills" kicker={t("skills.kicker")}>
+  <SectionShell id="profil" kicker={t("skills.kicker")}>
     <h2 class="heading">{t("skills.heading")}</h2>
     <p class="subheading">{t("skills.subheading")}</p>
     <p class="intro">{t("skills.intro")}</p>
@@ -50,8 +39,70 @@ const t = useTranslations(lang);
     </div>
   </SectionShell>
 
+  <SectionShell id="projekte" kicker={t("projects.kicker")}>
+    <h2 class="heading">{t("projects.heading")}</h2>
+    <p class="subheading">{t("projects.subheading")}</p>
+    <p class="intro">{t("projects.intro")}</p>
+
+    <h3 class="group">{t("projects.groupShaped")}</h3>
+    <div class="listings">
+      {
+        shaped.map((item) => (
+          <ListingRow
+            number={item.number}
+            title={item.title[lang]}
+            description={item.description[lang]}
+            meta={item.meta}
+            note={item.period[lang]}
+          />
+        ))
+      }
+    </div>
+
+    <h3 class="group">{t("projects.groupBuilt")}</h3>
+    <div class="listings">
+      {
+        built.map((item) => (
+          <ListingRow
+            number={item.number}
+            title={item.title[lang]}
+            description={item.description[lang]}
+            meta={item.meta}
+            note={item.period[lang]}
+          />
+        ))
+      }
+    </div>
+
+    <h3 class="group">{t("projects.groupOwn")}</h3>
+    <div class="featured-grid">
+      {
+        featured.map((project) => (
+          <FeaturedCard project={project} lang={lang} />
+        ))
+      }
+    </div>
+    <div class="listings">
+      {
+        listed.map((project) => (
+          <ListingRow
+            number={project.number}
+            title={project.title}
+            description={project.description[lang]}
+            meta={project.meta}
+            note={project.status}
+            url={project.url}
+          />
+        ))
+      }
+    </div>
+  </SectionShell>
+
   <SectionShell id="services" kicker={t("services.kicker")}>
-    <div class="card-grid">
+    <h2 class="heading">{t("services.heading")}</h2>
+    <p class="subheading">{t("services.subheading")}</p>
+    <p class="intro">{t("services.intro")}</p>
+    <div class="card-grid" style={`--cols: ${services.length}`}>
       {services.map((service) => <ServiceCard service={service} lang={lang} />)}
     </div>
   </SectionShell>
@@ -62,6 +113,8 @@ const t = useTranslations(lang);
 </main>
 
 <SiteFooter lang={lang} />
+
+<CvModal lang={lang} />
 
 <style>
   .featured-grid {
@@ -75,9 +128,10 @@ const t = useTranslations(lang);
     grid-column: 1 / -1;
   }
 
+  /* Spaltenzahl folgt der Kartenanzahl, damit keine leere Spalte entsteht */
   .card-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(var(--cols, 3), 1fr);
     gap: 24px;
   }
 
@@ -91,6 +145,19 @@ const t = useTranslations(lang);
     font-size: 40px;
     font-weight: 700;
     letter-spacing: -0.02em;
+  }
+
+  /* Group heading inside a section, one level below .heading. */
+  .group {
+    margin: 56px 0 18px;
+    font-family: var(--font-mono);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .group:first-of-type {
+    margin-top: 0;
   }
 
   .subheading {
@@ -133,6 +200,11 @@ const t = useTranslations(lang);
 
     .subheading {
       font-size: 17px;
+    }
+
+    .group {
+      margin-top: 44px;
+      font-size: 20px;
     }
   }
 

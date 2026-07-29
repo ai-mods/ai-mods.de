@@ -1,25 +1,46 @@
 ---
 interface Props {
-  href: string;
+  /** Omit to render a <button> instead of a link, e.g. to open a dialog. */
+  href?: string;
   label: string;
   variant: "primary" | "secondary";
   external?: boolean;
 }
 
-const { href, label, variant, external = false } = Astro.props;
+const { href, label, variant, external = false, ...rest } = Astro.props;
 const rel = external ? "noopener" : undefined;
 const target = external ? "_blank" : undefined;
 ---
 
-<a href={href} target={target} rel={rel} class:list={["btn", variant]}
-  >{label}</a
->
+{
+  href ? (
+    <a
+      href={href}
+      target={target}
+      rel={rel}
+      class:list={["btn", variant]}
+      {...rest}
+    >
+      {label}
+    </a>
+  ) : (
+    <button type="button" class:list={["btn", variant]} {...rest}>
+      {label}
+    </button>
+  )
+}
 
 <style>
   .btn {
     padding: 13px 24px;
     border-radius: var(--radius-btn);
     font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    /* Resets the browser default when rendered as <button>. The variants below
+       set their own border and background and win through cascade order. */
+    border: 0;
+    background: none;
   }
 
   .primary {
