@@ -9,22 +9,22 @@ export const services: Service[] = [
   {
     title: { de: "Change", en: "Change" },
     text: {
-      de: "Erst Use Case, dann Strategie, dann Werkzeug. Datenschutz und Security von Anfang an mitdenken, den Menschen nie vergessen. Das ist mein Maßstab.",
-      en: "Use case first, then strategy, then tooling. Data protection and security considered from day one, the people never forgotten. That is my benchmark.",
+      de: "Use Case >> Strategie >> Werkzeug. Datenschutz und Security von Anfang an dabei und nie den Menschen im Prozess vergessen. Das ist der Weg.",
+      en: "Use case >> strategy >> tooling. Data protection and security on board from day one, and never forget the people in the process. This is the way.",
     },
   },
   {
     title: { de: "Macher", en: "Maker" },
     text: {
-      de: "Browser-Apps, Automationen und KI-Frameworks in Claude oder Copilot Studio. Nicht als Demo gebaut, sondern für den Betrieb, in dem sie täglich laufen.",
-      en: "Browser apps, automations and AI frameworks in Claude or Copilot Studio. Not built as a demo, but for the operation they run in every day.",
+      de: "Apps, Automationen oder Frameworks in Claude oder Copilot Studio. Nicht nur als Demo gebaut, sondern für den Betrieb, in dem sie täglich laufen.",
+      en: "Apps, automations or frameworks in Claude or Copilot Studio. Not just a demo, but built for the operation they run in every day.",
     },
   },
   {
     title: { de: "Enabler", en: "Enabler" },
     text: {
-      de: "KI-Use-Cases erkennen, Workflows optimieren, Teams ins Boot holen: pragmatisch, leidenschaftlich und mit gemeinsamem Spaß am Erfolg.",
-      en: "Spot AI use cases, optimize workflows, get teams on board: pragmatic, passionate, and with shared enjoyment of success.",
+      de: "Keine Buzz-Words oder Folien-Kino. Ich übersetze zwischen Problem, Technik und Menschen. Mein Erfolg ist, wenn es danach ohne mich läuft.",
+      en: "No buzzwords, no slide theater. I translate between problem, technology and people. My success is when it runs without me afterwards.",
     },
   },
 ];
