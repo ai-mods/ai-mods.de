@@ -224,7 +224,7 @@ const steps = [
     font-family: var(--font-mono);
     /* Scales down with the viewport so it still breaks into two lines
        once the hero splits into two columns. */
-    font-size: clamp(40px, 3.6vw, 54px);
+    font-size: 54px;
     line-height: 1.1;
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -257,12 +257,20 @@ const steps = [
     .hero {
       --pad-x: 64px;
     }
+
+    .headline {
+      font-size: 48px;
+    }
   }
 
   @media (max-width: 1080px) {
     .columns {
       grid-template-columns: 1fr;
       gap: 44px;
+    }
+
+    .headline {
+      font-size: 42px;
     }
   }
 
