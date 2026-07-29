@@ -24,8 +24,8 @@ export const shaped: WorkItem[] = [
   {
     number: "01",
     title: {
-      de: "Team- und Prozess-Enablement",
-      en: "Team & Process Enablement",
+      de: "Team und Prozesse",
+      en: "Team & Processes",
     },
     solution: {
       de: "Graphical Support Team operativ geführt, Prozesse in Flow-Pläne übersetzt und optimiert, auf neue Prozesse und Systeme geschult.",
