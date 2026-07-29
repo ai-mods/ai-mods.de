@@ -7,22 +7,30 @@ interface Props {
 const { value, label } = Astro.props;
 ---
 
-<div>
-  <div class="value">{value}</div>
-  <div class="label">{label}</div>
+<div class="stat">
+  <span class="value">{value}</span>
+  <span class="label">{label}</span>
 </div>
 
 <style>
-  .value {
+  .stat {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
     font-family: var(--font-mono);
-    font-size: 38px;
+  }
+
+  /* Sizes are variables so a consumer can scale the pair down without a prop.
+     Custom properties inherit past the scoped styles. */
+  .value {
+    font-size: var(--stat-value-size, 18px);
     font-weight: 600;
     color: var(--acc);
     letter-spacing: -0.02em;
   }
 
   .label {
-    font-size: 13px;
-    color: var(--text-faint);
+    font-size: var(--stat-label-size, 15px);
+    color: var(--text-muted);
   }
 </style>

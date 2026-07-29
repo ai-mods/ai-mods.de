@@ -1,4 +1,5 @@
 ---
+import StatPair from "./StatPair.astro";
 import { useTranslations, type Lang } from "../i18n/utils";
 
 interface Props {
@@ -9,6 +10,8 @@ interface Props {
    *  labels are then dropped entirely, so no lone "solution" is left. */
   problem?: string;
   solution: string;
+  /** Omit for entries without verifiable figures. */
+  stats?: { value: string; label: string }[];
   meta: string;
   /** Trailing column: release status for projects, period for work entries. */
   note: string;
@@ -16,7 +19,8 @@ interface Props {
   url?: string;
 }
 
-const { lang, number, title, problem, solution, meta, note, url } = Astro.props;
+const { lang, number, title, problem, solution, stats, meta, note, url } =
+  Astro.props;
 const t = useTranslations(lang);
 const Tag = url ? "a" : "div";
 const linkProps = url
@@ -40,6 +44,15 @@ const linkProps = url
       {problem && <span class="label">{t("listing.solution")}</span>}
       {solution}
     </p>
+    {
+      stats && (
+        <div class="stats">
+          {stats.map((stat) => (
+            <StatPair value={stat.value} label={stat.label} />
+          ))}
+        </div>
+      )
+    }
   </div>
   <span class="meta">{meta}</span>
   <span class="note">{note}</span>
@@ -89,6 +102,17 @@ const linkProps = url
     margin-bottom: 0;
   }
 
+  /* Scaled down against the featured cards, so the figures stay subordinate
+     to the row title. */
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    margin-top: 10px;
+    --stat-value-size: 15px;
+    --stat-label-size: 13px;
+  }
+
   /* Labelled so the structure is visible at a glance and gives a reason
      to start reading. */
   .label {
@@ -118,15 +142,17 @@ const linkProps = url
 
   @media (max-width: 768px) {
     .row {
-      grid-template-columns: auto auto 1fr;
+      grid-template-columns: auto 1fr;
       grid-template-areas:
-        "body body body"
-        "number meta note";
+        "body body"
+        "meta note";
       gap: 10px 14px;
     }
 
+    /* Hidden rather than moved: below the entry it would number nothing that
+       is still ahead of the reader. */
     .number {
-      grid-area: number;
+      display: none;
     }
 
     .body {

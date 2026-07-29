@@ -15,51 +15,58 @@ const { project, lang } = Astro.props;
 
 <a href={project.url} target="_blank" rel="noopener" class="card">
   <div class="head">
+    <span class="number">{project.number}</span>
     <span class="title">{project.title}</span>
     <Pill label={project.status.label[lang]} variant={project.status.variant} />
   </div>
 
-  <p class="description">{project.description[lang]}</p>
+  <div class="body">
+    {
+      project.image &&
+        ("src" in project.image ? (
+          <div class="media">
+            <Image
+              src={project.image.src}
+              alt={project.image.alt[lang]}
+              widths={[580, 800]}
+              sizes="(max-width: 768px) 100vw, 290px"
+            />
+          </div>
+        ) : (
+          <div class="placeholder">
+            <span class="caption">{project.image.placeholder[lang]}</span>
+          </div>
+        ))
+    }
+    <div class="details">
+      <p class="description">
+        {project.lead && <span class="lead">{project.lead[lang]}</span>}{" "}
+        {project.description[lang]}
+      </p>
 
-  {
-    project.image &&
-      ("src" in project.image ? (
-        <div class="media">
-          <Image
-            src={project.image.src}
-            alt={project.image.alt[lang]}
-            widths={[500, 1000]}
-            sizes="(max-width: 768px) 100vw, 484px"
-          />
-        </div>
-      ) : (
-        <div class="placeholder">
-          <span class="caption">{project.image.placeholder[lang]}</span>
-        </div>
-      ))
-  }
+      {
+        project.highlights && (
+          <ul class="highlights">
+            {project.highlights.map((highlight) => (
+              <li>{highlight[lang]}</li>
+            ))}
+          </ul>
+        )
+      }
 
-  {
-    project.highlights && (
-      <ul class="highlights">
-        {project.highlights.map((highlight) => (
-          <li>{highlight[lang]}</li>
-        ))}
-      </ul>
-    )
-  }
+      {
+        project.stats && (
+          <div class="stats">
+            {project.stats.map((stat) => (
+              <StatPair value={stat.value} label={stat.label[lang]} />
+            ))}
+          </div>
+        )
+      }
 
-  {
-    project.stats && (
-      <div class="stats">
-        {project.stats.map((stat) => (
-          <StatPair value={stat.value} label={stat.label[lang]} />
-        ))}
-      </div>
-    )
-  }
-
-  <span class="tags">{project.tags}</span>
+      <span class="tags">{project.tags}</span>
+    </div>
+  </div>
 </a>
 
 <style>
@@ -81,14 +88,39 @@ const { project, lang } = Astro.props;
 
   .head {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 12px;
+  }
+
+  /* Continues the numbering of the rows below, so both render one sequence. */
+  .number {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--text-ghost);
   }
 
   .title {
+    margin-right: auto;
     font-family: var(--font-mono);
     font-size: 26px;
     font-weight: 600;
+  }
+
+  /* Banner beside the text rather than above it. The fixed column keeps the
+     image from scaling with the full-width card. */
+  .body {
+    display: grid;
+    grid-template-columns: 290px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* Description, stats and tags share the column next to the banner, so the
+     text side reaches roughly the banner height instead of leaving a gap. */
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .description {
@@ -96,6 +128,12 @@ const { project, lang } = Astro.props;
     font-size: 15px;
     line-height: 1.65;
     color: var(--text-muted);
+  }
+
+  /* Only the colour differs from the running text, so the sentence still
+     reads as one and the eye still gets an entry point. */
+  .lead {
+    color: var(--acc);
   }
 
   /* The banners differ in ratio (1.90:1 vs 1.78:1). Until they are exported
@@ -152,22 +190,33 @@ const { project, lang } = Astro.props;
     color: var(--text-ghost);
   }
 
+  /* Sits closer to the tags than to the description, so both meta lines read
+     as one block below the text. */
   .stats {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px 40px;
+    gap: 10px 24px;
+    margin-top: 8px;
   }
 
   .tags {
-    margin-top: auto;
     font-family: var(--font-mono);
     font-size: 12px;
     color: var(--text-faint);
   }
 
   @media (max-width: 768px) {
+    /* Hidden like the row numbers, so no group carries numbers on mobile. */
+    .number {
+      display: none;
+    }
+
+    .body {
+      grid-template-columns: 1fr;
+    }
+
     .stats {
-      gap: 20px 28px;
+      gap: 10px 20px;
     }
   }
 </style>

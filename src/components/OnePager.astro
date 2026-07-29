@@ -54,6 +54,10 @@ const t = useTranslations(lang);
             title={item.title[lang]}
             problem={item.problem?.[lang]}
             solution={item.solution[lang]}
+            stats={item.stats?.map((stat) => ({
+              value: stat.value,
+              label: stat.label[lang],
+            }))}
             meta={item.meta}
             note={item.period[lang]}
           />
@@ -71,6 +75,10 @@ const t = useTranslations(lang);
             title={item.title[lang]}
             problem={item.problem?.[lang]}
             solution={item.solution[lang]}
+            stats={item.stats?.map((stat) => ({
+              value: stat.value,
+              label: stat.label[lang],
+            }))}
             meta={item.meta}
             note={item.period[lang]}
           />
@@ -123,9 +131,11 @@ const t = useTranslations(lang);
 <CvModal lang={lang} />
 
 <style>
+  /* Volle Breite pro Karte, damit die Beschreibung neben dem Banner in
+     wenigen Zeilen ausläuft statt eine hohe Leerfläche zu erzeugen */
   .featured-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 24px;
     margin-bottom: 24px;
   }
@@ -186,7 +196,6 @@ const t = useTranslations(lang);
   }
 
   @media (max-width: 768px) {
-    .featured-grid,
     .card-grid {
       grid-template-columns: 1fr;
     }

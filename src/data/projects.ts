@@ -7,9 +7,13 @@ export type FeaturedImage =
   { src: ImageMetadata; alt: LocalizedText } | { placeholder: LocalizedText };
 
 export type FeaturedProject = {
+  number: string;
   title: string;
   url: string;
   status: { label: LocalizedText; variant: "accent" | "neutral" };
+  /** Category lead-in ahead of the description. Carries the accent colour so
+   *  a scanning eye gets the same entry point the labelled rows offer. */
+  lead?: LocalizedText;
   description: LocalizedText;
   tags: string;
   image?: FeaturedImage;
@@ -29,15 +33,17 @@ export type ListedProject = {
 
 export const featured: FeaturedProject[] = [
   {
+    number: "01",
     title: "Project Fusion",
     url: "https://project-fusion.de",
     status: {
       label: { de: "in entwicklung", en: "in development" },
       variant: "accent",
     },
+    lead: { de: "AI-Agent-Workspace:", en: "AI agent workspace:" },
     description: {
-      de: "AI-Agent-Workspace: Meine Spielwiese und Labor in Form einer Full-Stack-Umgebung. Gestartet, um die Möglichkeiten von Claude Code zu entdecken. Herausgekommen ist eine Productivity-App mit eigenem Harness, Sandboxing und Trust-Core. So habe ich das Arbeiten mit KI vertieft und verstehe am selbst gebauten Harness, worauf es bei Tooling und Sicherheit ankommt.",
-      en: "AI agent workspace: my playground and lab in the shape of a full-stack environment. Started out to explore what Claude Code can do. What came out of it is a productivity app with its own harness, sandboxing and trust core. That deepened how I work with AI, and the harness I built shows me what matters in tooling and security.",
+      de: "Meine Spielwiese und Labor in Form einer Full-Stack-Umgebung. Gestartet, um die Möglichkeiten von Claude Code zu entdecken. Angekommen bin ich bei einer Productivity-App mit eigenem Harness, Sandboxing und Trust-Core. So habe ich das Arbeiten mit KI vertieft und verstehe am selbst gebauten Harness, worauf es bei Tooling und Sicherheit ankommt.",
+      en: "my playground and lab in the shape of a full-stack environment. Started out to explore what Claude Code can do. Where I ended up is a productivity app with its own harness, sandboxing and trust core. That deepened how I work with AI, and the harness I built shows me what matters in tooling and security.",
     },
     tags: "typescript · react · python · postgresql · docker · claude",
     stats: [
@@ -57,15 +63,17 @@ export const featured: FeaturedProject[] = [
     },
   },
   {
+    number: "02",
     title: "Operations Command",
     url: "https://steamcommunity.com/sharedfiles/filedetails/?id=2651774379",
     status: {
       label: { de: "released", en: "released" },
       variant: "neutral",
     },
+    lead: { de: "Modifikation für Arma 3:", en: "Modification for Arma 3:" },
     description: {
-      de: "Modifikation für Arma 3: Das Erstellen von Missionen erfordert meist ein wenig Erfahrung im Coden und viel Aufwand im Spiele-Editor. OPCOM löst das mit einem intuitiven UI und einer bis dahin einmaligen UX in Arma 3. Wirklich jeder kann sich mit wenigen Klicks ein eigenes Szenario erstellen und während dem Spielen fortlaufend anpassen.",
-      en: "Modification for Arma 3: building missions usually takes some coding experience and a lot of work in the game editor. OPCOM solves that with an intuitive UI and a UX unmatched in Arma 3 at the time. Anyone can put together their own scenario in a few clicks and keep adjusting it while playing.",
+      de: "Das Erstellen von Missionen erfordert meist ein wenig Erfahrung im Coden und viel Aufwand im Spiele-Editor. OPCOM löst das mit einem intuitiven UI und einer einmaligen UX in Arma 3. Wirklich jeder kann sich mit wenigen Klicks ein eigenes Szenario erstellen und beim Spielen fortlaufend anpassen. So habe ich Coden und Architektur-Verständnis gelernt.",
+      en: "building missions usually takes some coding experience and a lot of work in the game editor. OPCOM solves that with an intuitive UI and a UX unmatched in Arma 3. Anyone can put together their own scenario in a few clicks and keep adjusting it while playing. That is how I learned coding and how architecture works.",
     },
     tags: "sqf · fsm · steam workshop",
     image: {
@@ -77,7 +85,7 @@ export const featured: FeaturedProject[] = [
     },
     stats: [
       { value: "40k+", label: { de: "Nutzer", en: "users" } },
-      { value: "1.923", label: { de: "Bewertungen", en: "ratings" } },
+      { value: "1923", label: { de: "Bewertungen", en: "ratings" } },
       {
         value: "98%",
         label: { de: "positive Bewertungen", en: "positive ratings" },
@@ -107,8 +115,8 @@ export const listed: ListedProject[] = [
     title: "discogs-plugin",
     url: "https://github.com/ai-mods/discogs-plugin",
     problem: {
-      de: "Aufwendige Suche nach neuen Platten-Releases, Wantlist-Pflege.",
-      en: "Time-consuming hunt for new vinyl releases, wantlist upkeep.",
+      de: "Aufwendige Suche nach neuen Platten-Releases und zähe Wantlist-Pflege.",
+      en: "Time-consuming hunt for new vinyl releases and slow wantlist upkeep.",
     },
     solution: {
       de: "MCP-Server für Discogs: KI sucht Releases, verwaltet Sammlung und Wantlist.",
@@ -137,8 +145,8 @@ export const listed: ListedProject[] = [
     title: "tablet-toggle",
     url: "https://github.com/ai-mods/tablet-toggle",
     problem: {
-      de: "Mit Tastatur wechselte mein 2-in-1 nicht in den Desktop-Modus.",
-      en: "Attaching the keyboard did not switch my 2-in-1 to desktop mode.",
+      de: "Mit Tastatur wechselte mein 2-in-1 Notebook nicht in den Desktop-Modus.",
+      en: "With the keyboard attached, my 2-in-1 notebook stayed in tablet mode.",
     },
     solution: {
       de: "Windows-Tray-Utility zum Umschalten zwischen Laptop- und Tablet-Modus.",

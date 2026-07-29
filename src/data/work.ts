@@ -7,6 +7,8 @@ export type WorkItem = {
    *  and therefore carries a plain description without labels. */
   problem?: LocalizedText;
   solution: LocalizedText;
+  /** Only for entries with verifiable figures. Entries without stay plain. */
+  stats?: { value: string; label: LocalizedText }[];
   meta: string;
   period: LocalizedText;
 };
@@ -26,9 +28,13 @@ export const shaped: WorkItem[] = [
       en: "Team & Process Enablement",
     },
     solution: {
-      de: "16-köpfiges Team operativ geführt, Prozesse in Flow-Pläne übersetzt und optimiert, Mitarbeitende auf neue Systeme geschult.",
-      en: "Led a team of 16 on an operational basis, translated processes into flow charts and optimized them, trained staff on new systems.",
+      de: "Graphical Support Team operativ geführt, Prozesse in Flow-Pläne übersetzt und optimiert, auf neue Prozesse und Systeme geschult.",
+      en: "Led the Graphical Support team operationally, translated processes into flow charts and optimized them, trained staff on new processes and systems.",
     },
+    stats: [
+      { value: "16", label: { de: "Mitarbeiter", en: "team members" } },
+      { value: "3", label: { de: "Hauptprozesse", en: "core processes" } },
+    ],
     meta: "change · operations",
     period: { de: "seit 2023", en: "since 2023" },
   },
@@ -36,9 +42,13 @@ export const shaped: WorkItem[] = [
     number: "02",
     title: { de: "KI-Projekt", en: "AI Project" },
     solution: {
-      de: "5 Monate Sonderprojekt: Use-Cases ermittelt, Chatbots getestet, Anforderungen fürs Lastenheft geliefert, Dienstleister mit dem Projektteam sondiert.",
-      en: "Five-month special project: identified use cases, tested chatbots, supplied requirements for the specification sheet, screened vendors with the project team.",
+      de: "Chatbots getestet, Use-Cases ermittelt, Anforderungen fürs Lastenheft geliefert, Dienstleister mit dem Projektteam sondiert, Messebesuch.",
+      en: "Tested chatbots, identified use cases, supplied requirements for the specification sheet, screened vendors with the project team, trade fair visit.",
     },
+    stats: [
+      { value: "5", label: { de: "Monate", en: "months" } },
+      { value: "2", label: { de: "Chatbots", en: "chatbots" } },
+    ],
     meta: "strategie · conversational ai",
     period: { de: "2024", en: "2024" },
   },
@@ -49,9 +59,14 @@ export const shaped: WorkItem[] = [
       en: "Umbrella Brand Strategy & CD Relaunch",
     },
     solution: {
-      de: "Sieben Konzerngesellschaften unter einer Dachmarke vereint. Corporate Design konzernweit entwickelt, verankert und in allen Bereichen durchgesetzt.",
-      en: "United seven group companies under a single umbrella brand. Developed the corporate design, embedded it group-wide and carried it into every division.",
+      de: "Konzerngesellschaften unter einer Dachmarke vereint. Corporate Design konzernweit entwickelt, verankert und in allen Bereichen durchgesetzt.",
+      en: "United the group companies under a single umbrella brand. Developed the corporate design, embedded it group-wide and carried it into every division.",
     },
+    stats: [
+      { value: "7", label: { de: "Gesellschaften", en: "companies" } },
+      { value: "1", label: { de: "Dachmarke", en: "umbrella brand" } },
+      { value: "3", label: { de: "Teilprojekte", en: "sub-projects" } },
+    ],
     meta: "markenstrategie · ci/cd",
     period: { de: "2011 bis 2016", en: "2011 to 2016" },
   },
@@ -62,9 +77,13 @@ export const shaped: WorkItem[] = [
       en: "Website & Intranet Relaunch",
     },
     solution: {
-      de: "Relaunch verantwortet, von der Strategie bis zum Livegang. Struktur, Content und Usability neu gedacht, Widerstände im Konzern aufgelöst.",
-      en: "Owned the relaunch from strategy to go-live. Rethought structure, content and usability, and resolved resistance across the group.",
+      de: "Relaunch verantwortet, von der Strategie bis zum Livegang. Struktur, Content und Usability neu gedacht, Akzeptanz im Konzern aufgebaut.",
+      en: "Owned the relaunch from strategy to go-live. Rethought structure, content and usability, and built acceptance across the group.",
     },
+    stats: [
+      { value: "2", label: { de: "Portale", en: "portals" } },
+      { value: "1", label: { de: "CMS", en: "CMS" } },
+    ],
     meta: "web · content · usability",
     period: { de: "2011 bis 2016", en: "2011 to 2016" },
   },
@@ -82,6 +101,10 @@ export const built: WorkItem[] = [
       de: "Power Apps: E-Mail-Builder mit Drag-and-Drop und automatischen Regeln.",
       en: "Power Apps: email builder with drag and drop and automatic rules.",
     },
+    stats: [
+      { value: "5", label: { de: "Nutzer", en: "users" } },
+      { value: "300", label: { de: "Mails pro Tag", en: "emails a day" } },
+    ],
     meta: "power apps · low-code",
     period: { de: "2025", en: "2025" },
   },
@@ -89,13 +112,17 @@ export const built: WorkItem[] = [
     number: "02",
     title: { de: "Report-Visualisierer", en: "Report Visualizer" },
     problem: {
-      de: "Prüfdaten und -ergebnisse in über 3.000 Zeilen XML verteilt.",
-      en: "Test data and results spread across more than 3,000 lines of XML.",
+      de: "Prüfdaten und -ergebnisse in XML, kein automatisches Auswerten.",
+      en: "Test data and results in XML, no automated evaluation.",
     },
     solution: {
-      de: "Browser-Tool: Drag-and-Drop der XML-Datei liefert visuelle Auswertung.",
+      de: "Browser-Tool: Drag-and-Drop der XML-Datei liefert visuellen Report.",
       en: "Browser tool: drop in the XML file, get a visual report back.",
     },
+    stats: [
+      { value: "3000", label: { de: "Zeilen XML", en: "lines of XML" } },
+      { value: "1", label: { de: "Seite Report", en: "page report" } },
+    ],
     meta: "typescript · browser",
     period: { de: "2024", en: "2024" },
   },
@@ -103,13 +130,18 @@ export const built: WorkItem[] = [
     number: "03",
     title: { de: "Teams-Workflows", en: "Teams Workflows" },
     problem: {
-      de: "Ungefilterte Infos und Anfragen über mehrere Kontaktkanäle verteilt.",
-      en: "Unfiltered information and requests spread across several channels.",
+      de: "Ungefilterte Infos und Anfragen über Anrufe, Mails und Teams-Nachrichten.",
+      en: "Unfiltered information and requests via calls, email and Teams messages.",
     },
     solution: {
-      de: "Power-Automate: Teams- und Formular-Anfragen ins Kanban-Board gebracht.",
-      en: "Power Automate: Teams and form requests routed into the Kanban board.",
+      de: "Power-Automate: Formulare und Filter bringen Tasks in ein Kanban-Board.",
+      en: "Power Automate: forms and filters bring tasks into a Kanban board.",
     },
+    stats: [
+      { value: "3", label: { de: "Kanäle", en: "channels" } },
+      { value: "1", label: { de: "Workflow", en: "workflow" } },
+      { value: "1", label: { de: "Tracker", en: "tracker" } },
+    ],
     meta: "power automate",
     period: { de: "seit 2023", en: "since 2023" },
   },
