@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import SectionShell from "./SectionShell.astro";
 import FactRow from "./FactRow.astro";
-import { siteConfig } from "../config";
 import { useTranslations, type Lang } from "../i18n/utils";
 import portrait from "../assets/chris-portrait.webp";
 
@@ -51,19 +50,6 @@ const t = useTranslations(lang);
         label={t("about.fact.languagesLabel")}
         value={t("about.fact.languagesValue")}
       />
-      <FactRow
-        label={t("about.fact.workModeLabel")}
-        value={t("about.fact.workModeValue")}
-      />
-      {
-        siteConfig.available && (
-          <FactRow
-            label={t("about.fact.availableLabel")}
-            value={t("about.fact.availableValue")}
-            accent
-          />
-        )
-      }
       <FactRow
         label={t("about.fact.openLabel")}
         value={t("about.fact.openValue")}

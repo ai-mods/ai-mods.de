@@ -1,5 +1,4 @@
 export const siteConfig = {
-  available: true,
   email: "chris@ai-mods.de",
   links: {
     github: "https://github.com/ai-mods",

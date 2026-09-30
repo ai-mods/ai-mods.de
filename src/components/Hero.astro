@@ -39,11 +39,7 @@ const steps = [
       <div class="pitch">
         <div class="meta-row">
           <span class="identity">{t("hero.identity")}</span>
-          {
-            siteConfig.available && (
-              <span class="avail">{t("hero.availability")}</span>
-            )
-          }
+          <span class="current">{t("hero.currentRole")}</span>
         </div>
 
         <h1 class="headline">{t("hero.headline")}</h1>
@@ -60,9 +56,10 @@ const steps = [
             external
           />
           <Button
+            href={siteConfig.links.github}
             label={t("hero.ctaSecondary")}
             variant="secondary"
-            data-cv-open
+            external
           />
         </div>
       </div>
@@ -134,7 +131,7 @@ const steps = [
     color: var(--acc);
   }
 
-  .avail {
+  .current {
     font-family: var(--font-mono);
     font-size: 12px;
     color: var(--acc);
